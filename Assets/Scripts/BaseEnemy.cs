@@ -35,4 +35,18 @@ public class BaseEnemy : MonoBehaviour
                 break;
         }
     }
+
+    public void Dodge()
+    {
+        int dodge_chance = Random.Range(0,4);
+        int side = Random.Range(0,2);
+        if (dodge_chance == 3) {
+            if (side == 0){
+                transform.position += new Vector3(4, 0);
+            }
+            else if (side == 1){
+                transform.position += new Vector3(-4, 0);
+            }
+        }
+    }
 }
