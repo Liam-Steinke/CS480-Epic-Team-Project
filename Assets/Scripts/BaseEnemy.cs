@@ -9,6 +9,7 @@ public class BaseEnemy : MonoBehaviour
 
     // Enemy stats
     public int health = 20;
+    public float timer = 3.0f;
 
     // Navigation agent stuff
     //
@@ -28,6 +29,11 @@ public class BaseEnemy : MonoBehaviour
                 }
                 break;
             case States.ENGAGE:
+                timer -= Time.deltaTime;
+                if(timer <=0)
+                {
+                    state = States.ATTACK;
+                }
                 break;
             case States.ATTACK:
                 break;
