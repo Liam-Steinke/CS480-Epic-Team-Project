@@ -319,7 +319,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
-  m_Colliders: []
+  m_Colliders:
+  - {fileID: 1827619755658407739}
+  - {fileID: 6079484797830552984}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -540,7 +542,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a28915334711d894aa3b79db5b4b9c2b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

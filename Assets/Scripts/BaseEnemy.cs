@@ -5,19 +5,19 @@ public class BaseEnemy : MonoBehaviour
 {
     // State machine
     private enum States {SEEK, ENGAGE, ATTACK, DIE};
-    private States state = States.SEEK;
+    private States state = States.ENGAGE;
 
     // Enemy stats
     public int health = 20;
-    public float timer = 3.0f;
+    public float attackTimer = 3.0f;
 
     // Navigation agent stuff
-    //
-    // SerializeField lets you look at private
-    // variables in the Inspector
-    //
-    [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private GameObject target;
+    public NavMeshAgent agent;
+    public GameObject target;
+
+    // Animation stuff
+    public Animator animator;
+    private string currentAnimation = "Idle";
 
     // Update is called once per frame
     void Update()
@@ -26,16 +26,27 @@ public class BaseEnemy : MonoBehaviour
             case States.SEEK:
                 if (target != null) {
                     agent.SetDestination(target.transform.position);
+                    if (!agent.pathPending) {
+                            if (agent.remainingDistance <= agent.stoppingDistance) {
+                                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
+                                    state = States.ENGAGE;
+                                    ChangeAnimation("Idle");
+                                }
+                            }
+                        }
                 }
                 break;
             case States.ENGAGE:
-                timer -= Time.deltaTime;
-                if(timer <=0)
+                attackTimer -= Time.deltaTime;
+                if (attackTimer <= 0)
                 {
                     state = States.ATTACK;
+                    ChangeAnimation("Idle");
                 }
                 break;
             case States.ATTACK:
+                state = States.SEEK;
+                ChangeAnimation("Walk");
                 break;
             case States.DIE:
                 break;
@@ -54,5 +65,13 @@ public class BaseEnemy : MonoBehaviour
                 transform.position += new Vector3(-4, 0);
             }
         }
+    }
+    // Use to transition smoothly between animations
+    public void ChangeAnimation(string animation) {
+        if (currentAnimation != animation) {
+            currentAnimation = animation;
+            animator.CrossFade(animation, 0.2f);
+        }
+        
     }
 }
