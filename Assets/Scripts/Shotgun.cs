@@ -20,19 +20,23 @@ public class Shotgun : MonoBehaviour
     void Update()
     {
         // Check if pump is pulled back
-        if (pump.transform.localPosition.z <= pumpLimit) {
+        if (pump.transform.localPosition.z <= pumpLimit)
+        {
             pumped = true;
         }
 
         // Check if pump is pushed forward (after pulling back)
-        if (pumped && pump.transform.localPosition.z >= 0.9f) {
+        if (pumped && pump.transform.localPosition.z >= 0.9f)
+        {
             pumped = false;
             canShoot = true;
         }
     }
 
-    public void shoot() {
-        if (ammo > 0 && canShoot) {
+    public void shoot()
+    {
+        if (ammo > 0 && canShoot)
+        {
             ammo -= 1;
             canShoot = false;
             shootSound.GetComponent<AudioSource>().Play();
@@ -40,7 +44,8 @@ public class Shotgun : MonoBehaviour
         }
     }
 
-    private void createShot() {
+    private void createShot()
+    {
         GameObject currentBullet = Instantiate(projectile, shootPoint.position, Quaternion.identity);
         currentBullet.transform.forward = shootPoint.forward;
         currentBullet.GetComponent<Rigidbody>().AddForce(shootPoint.forward * 20, ForceMode.Impulse);

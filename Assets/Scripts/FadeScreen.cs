@@ -70,7 +70,7 @@ public class FadeScreen : MonoBehaviour
             rend.material.SetColor(colorPropertyName, newColor);
             //mat.SetColor(colorPropertyName, newColor);
             //print("should be a = " + newColor.a);
-            //print("is be a = " + mat.color.a);
+            //print("is be a = " + rend.material.color.a);
 
             //print("timer = " + timer);
             timer += Time.deltaTime; //wait for a frame to pass, might be better to put in update but this works

@@ -41,6 +41,11 @@ public class SceneLoader : MonoBehaviour
 
     }
 
+    public void GoToScene(String sceneName)
+    {
+        Scene s = SceneManager.GetSceneByName(sceneName);
+    }
+
     IEnumerator GoToSceneRoutine(int sceneIndex)
     {
         //fade out

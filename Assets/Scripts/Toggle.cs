@@ -9,6 +9,9 @@ using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 public class Toggle : MonoBehaviour
 {
     public InputActionReference toggleActionRef;
+
+    public ActionBasedControllerManager leftLocomotion;
+
     public ActionBasedControllerManager rightLocomotion;
 
     public TextMeshProUGUI text;
@@ -21,6 +24,7 @@ public class Toggle : MonoBehaviour
         toggleAction = toggleActionRef.ToInputAction();
         SmoothMotion = true;
         rightLocomotion.smoothMotionEnabled = false;
+        leftLocomotion.smoothMotionEnabled = true;
         updateText();
         //Debug.Log("Started");
     }
@@ -44,6 +48,7 @@ public class Toggle : MonoBehaviour
         {
             //Debug.Log("A button Pressed");
             rightLocomotion.smoothMotionEnabled = SmoothMotion;
+            leftLocomotion.smoothMotionEnabled = !SmoothMotion;
             SmoothMotion = !SmoothMotion;
             //text.SetText("changed");
             updateText();
