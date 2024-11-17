@@ -163,8 +163,8 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.YOUR_NAME_HERE.PROJECT_NAME_HERE
-    Standalone: com.YOUR-NAME-HERE.PROJECT-NAME-HERE
+    Android: com.epicteam.epic_team_project
+    Standalone: com.epic-team.epic-team-project
   buildNumber:
     Standalone: 0
     VisionOS: 0

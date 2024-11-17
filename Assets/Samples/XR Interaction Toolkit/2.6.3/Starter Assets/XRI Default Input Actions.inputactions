@@ -2756,6 +2756,17 @@
                     "action": "Toggle",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a8584976-2897-4fe2-8508-723317a1fd49",
+                    "path": "<XRController>{LeftHand}/{primaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller;Continuous Move;Noncontinuous Move",
+                    "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
