@@ -29,7 +29,6 @@ public class Shotgun : MonoBehaviour
             pumped = false;
             canShoot = true;
         }
-        Debug.Log(pump.transform.localPosition);
     }
 
     public void shoot() {

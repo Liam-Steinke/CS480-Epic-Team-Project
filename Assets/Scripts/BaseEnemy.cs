@@ -19,6 +19,10 @@ public class BaseEnemy : MonoBehaviour
     public Animator animator;
     private string currentAnimation = "Idle";
 
+    // Shooting stuff
+    public Transform shootPoint;
+    public GameObject projectile;
+
     // Update is called once per frame
     void Update()
     {
@@ -42,7 +46,10 @@ public class BaseEnemy : MonoBehaviour
                 {
                     state = States.ATTACK;
                     ChangeAnimation("Idle");
+                    createShot();
+                    attackTimer = 3.0f;
                 }
+                
                 break;
             case States.ATTACK:
                 state = States.SEEK;
@@ -73,5 +80,11 @@ public class BaseEnemy : MonoBehaviour
             animator.CrossFade(animation, 0.2f);
         }
         
+    }
+
+    private void createShot() {
+        GameObject currentBullet = Instantiate(projectile, shootPoint.position, Quaternion.identity);
+        currentBullet.transform.forward = shootPoint.forward;
+        currentBullet.GetComponent<Rigidbody>().AddForce(shootPoint.forward * 20, ForceMode.Impulse);
     }
 }
