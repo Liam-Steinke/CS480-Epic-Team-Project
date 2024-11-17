@@ -1691,6 +1691,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1402263998352834314, guid: 437c7506cf2ef5144b6accfe25ea63fc, type: 3}
+      propertyPath: colorPropertyName
+      value: _Color
+      objectReference: {fileID: 0}
     - target: {fileID: 3951244762340834787, guid: 437c7506cf2ef5144b6accfe25ea63fc, type: 3}
       propertyPath: m_Name
       value: Player
