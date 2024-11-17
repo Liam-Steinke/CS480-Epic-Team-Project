@@ -2743,6 +2743,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "f5b966be-cdf9-436d-9104-23c5ae9d4598",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2765,6 +2774,28 @@
                     "processors": "",
                     "groups": "Generic XR Controller;Continuous Move;Noncontinuous Move",
                     "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84e159ca-228d-4a1a-bd51-b500aebbe989",
+                    "path": "<XRController>{RightHand}/{secondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Continuous Move;Generic XR Controller;Noncontinuous Move",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e46a4ae-cf25-42d0-88d8-ba673c5376ae",
+                    "path": "<XRController>{LeftHand}/{secondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller;Continuous Move;Noncontinuous Move",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
