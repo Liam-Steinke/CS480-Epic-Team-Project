@@ -73,7 +73,7 @@ public class FadeScreen : MonoBehaviour
             //print("is be a = " + mat.color.a);
 
             //print("timer = " + timer);
-            timer += Time.deltaTime;
+            timer += Time.deltaTime; //wait for a frame to pass, might be better to put in update but this works
             yield return null;
         }
 

@@ -11,8 +11,12 @@ public class GameStartMenu : MonoBehaviour
     public GameObject options;
     public GameObject about;
 
+    //public GameObject levels
+
     [Header("Main Menu Buttons")]
     public Button startButton;
+
+    //public Button LevelsSelectionButton;
     public Button optionButton;
     public Button aboutButton;
     public Button quitButton;
@@ -31,6 +35,7 @@ public class GameStartMenu : MonoBehaviour
         optionButton.onClick.AddListener(EnableOption);
         aboutButton.onClick.AddListener(EnableAbout);
         quitButton.onClick.AddListener(QuitGame);
+        //LevelSelectionButton.onClick.AddListener(EnableLevelSelect);
 
         foreach (var item in returnButtons)
         {
@@ -78,4 +83,12 @@ public class GameStartMenu : MonoBehaviour
         options.SetActive(false);
         about.SetActive(true);
     }
+    // public void EnableLevelSelect()
+    // {
+    //     mainMenu.SetActive(false);
+    //     options.SetActive(false);
+    //     about.SetActive(false);
+
+
+    // }
 }

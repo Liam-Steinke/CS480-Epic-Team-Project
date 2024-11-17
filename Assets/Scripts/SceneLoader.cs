@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
 
-
+    //'game object' that will fade in and out
     public FadeScreen fadeScreen;
     //keep a reference of the script so that other scripts can access it
     public static SceneLoader singleton; //thanks bernstein!
@@ -28,19 +28,22 @@ public class SceneLoader : MonoBehaviour
     {
         //print("SC starting");
         //Debug.Log("SC starting ");
-
+        //set singletion to this instance
         singleton = this;
         //print("Start done SC");
     }
 
     public void GoToScene(int sceneIndex)
     {
+        //wrapper method to make calling easier and start everything from this script
         //print("starting scne e = " + sceneIndex);
         StartCoroutine(GoToSceneRoutine(sceneIndex));
+
     }
 
     IEnumerator GoToSceneRoutine(int sceneIndex)
     {
+        //fade out
         fadeScreen.FadeOut();
         yield return new WaitForSeconds(fadeScreen.fadeDuration);
 
@@ -50,6 +53,7 @@ public class SceneLoader : MonoBehaviour
 
     public void GoToSceneAsync(int sceneIndex)
     {
+        //lets fade run while scene is being loaded
         StartCoroutine(GoToSceneAsyncRoutine(sceneIndex));
     }
 
@@ -57,16 +61,18 @@ public class SceneLoader : MonoBehaviour
     {
         fadeScreen.FadeOut();
         //Launch the new scene
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex); //load the scene then let fade finish
         operation.allowSceneActivation = false;
 
         float timer = 0;
+        //wait for the scene to finish loading and fade animation to be done
         while (timer <= fadeScreen.fadeDuration && !operation.isDone)
         {
             timer += Time.deltaTime;
             yield return null;
         }
 
+        //do switch 
         operation.allowSceneActivation = true;
     }
 
