@@ -9,14 +9,17 @@ public class Player : MonoBehaviour, BaseEntity
 
     public int maxHealth = 100;
     public int health = 100;
+    public SceneLoader sceneLoader;
 
     private bool canTakeDamage = false;
-    public AudioSource deathSFX, damageSFX;
+    //public AudioSource deathSFX, damageSFX;
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -49,7 +52,7 @@ public class Player : MonoBehaviour, BaseEntity
         }
 
         health -= damage;
-
+        healthBar.SetHealth(health);
         //Debug.Log("Player health: " + health);
         if (health <= 0)
         {
@@ -65,8 +68,10 @@ public class Player : MonoBehaviour, BaseEntity
 
     private void Die()
     {
+
         setState(States.DEAD);
         health = 0;
+        sceneLoader.GoToScene(0);
         //deathSFX.Play();
         // Reproduce death sound and implement a restart option
         // TODO: Implement restart functionality and sound reproduction
