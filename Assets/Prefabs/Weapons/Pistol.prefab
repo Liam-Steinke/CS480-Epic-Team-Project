@@ -430,7 +430,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -486,6 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 8031233171509647927}
   projectile: {fileID: 1209441644125003762, guid: 5bd986f0c0cc15b46ab50392fddc57fe, type: 3}
+  shootSound: {fileID: 6691120242278286604}
 --- !u!1 &6691120242278286604
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +531,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a28915334711d894aa3b79db5b4b9c2b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 0.357
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -3362,7 +3362,7 @@ MonoBehaviour:
   m_SetLineColorGradient: 1
   m_ValidColorGradient:
     serializedVersion: 2
-    key0: {r: 0.1999999, g: 1, b: 0, a: 1}
+    key0: {r: 0, g: 0.8565588, b: 1, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
@@ -3387,7 +3387,7 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_ColorSpace: -1
+    m_ColorSpace: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   m_InvalidColorGradient:
@@ -4851,6 +4851,8 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   sceneLoader: {fileID: 6817435487686086941}
+  deathSFX: {fileID: 9160703773102458080}
+  damageSFX: {fileID: 5456836763885626275}
   healthBar: {fileID: 150499473736003263}
 --- !u!1 &4112440202491101032
 GameObject:
@@ -7901,9 +7903,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: dfca9fab38e74b44bbb7349938898dfe, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.737
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8029,8 +8031,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: f4b9abf402a7ef04c8d47b207eeed32a, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -8192,17 +8194,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7782106973453017606}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00075, y: 0.00075, z: 0.00075}
+  m_LocalRotation: {x: 0.14305934, y: 0.22381552, z: -0.033231795, w: 0.96350217}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0198}
+  m_LocalScale: {x: 0.00036517502, y: 0.00036517502, z: 0.00036517502}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5448380361829569853}
   m_Father: {fileID: 3364806268491045880}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.891, y: 26.155, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.055}
+  m_AnchoredPosition: {x: 0.0118, y: 0.037}
   m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4445657149933101565

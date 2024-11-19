@@ -5,12 +5,14 @@ public class Pistol : MonoBehaviour
 {
     public Transform shootPoint;
     public GameObject projectile;
+    public GameObject shootSound;
 
     private int ammo = 1200;
 
     public void shoot() {
         if (ammo > 0) {
             ammo -= 1;
+            shootSound.GetComponent<AudioSource>().Play();
             createShot();
         }
     }

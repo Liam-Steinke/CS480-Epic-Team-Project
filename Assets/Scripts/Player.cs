@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, BaseEntity
     public SceneLoader sceneLoader;
 
     private bool canTakeDamage = false;
-    //public AudioSource deathSFX, damageSFX;
+    public AudioSource deathSFX, damageSFX;
     public HealthBar healthBar;
 
     // Start is called before the first frame update
@@ -57,22 +57,23 @@ public class Player : MonoBehaviour, BaseEntity
         if (health <= 0)
         {
             // We either reproduce damageSFX or deathSFX but not both
+            
             Die();
         }
         else
         {
             //Maybe reproduce a hit sound
-            //  damageSFX.Play();
+            damageSFX.Play();
         }
     }
 
     private void Die()
     {
-
+        deathSFX.Play();
         setState(States.DEAD);
         health = 0;
         sceneLoader.GoToScene(0);
-        //deathSFX.Play();
+        
         // Reproduce death sound and implement a restart option
         // TODO: Implement restart functionality and sound reproduction
         //Debug.Log("Player died");
