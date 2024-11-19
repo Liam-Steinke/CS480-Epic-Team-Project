@@ -8,7 +8,7 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
     private States state = States.ENGAGE;
 
     // Enemy stats
-    public int health = 20;
+    public float health = 5.0f;
     public float attackTimer = 3.0f;
 
     // Navigation agent stuff
@@ -89,9 +89,13 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
         currentBullet.GetComponent<Rigidbody>().AddForce(shootPoint.forward * 20, ForceMode.Impulse);
     }
 
-    public void TakeDamage(int damage,double multiplier)
+    public void TakeDamage(int damage, double multiplier)
     {
-
+        health -= damage * (float) multiplier;
+        print("OUCH");
+        if (health <= 0.0f) {
+            Destroy(gameObject);
+        }
     }
     
     public void LookAtTarget() {
