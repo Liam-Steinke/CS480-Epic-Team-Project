@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, BaseEntity
 {
     public enum States { IMMORTAL, ALIVE, DEAD};
     [SerializeField] private States state = States.IMMORTAL;
@@ -11,11 +11,12 @@ public class Player : MonoBehaviour
     public int health = 100;
 
     private bool canTakeDamage = false;
+    public AudioSource deathSFX, damageSFX;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
                 canTakeDamage = true;
                 break;
             case States.DEAD:
+                canTakeDamage = false;
                 break;
         }
     }
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
         state = newState;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, double multiplier)
     {
         if (!canTakeDamage)
         {
@@ -47,19 +49,25 @@ public class Player : MonoBehaviour
         }
 
         health -= damage;
+
         //Debug.Log("Player health: " + health);
         if (health <= 0)
         {
+            // We either reproduce damageSFX or deathSFX but not both
             Die();
         }
         else
         {
             //Maybe reproduce a hit sound
+            //  damageSFX.Play();
         }
     }
 
     private void Die()
     {
+        setState(States.DEAD);
+        health = 0;
+        //deathSFX.Play();
         // Reproduce death sound and implement a restart option
         // TODO: Implement restart functionality and sound reproduction
         //Debug.Log("Player died");

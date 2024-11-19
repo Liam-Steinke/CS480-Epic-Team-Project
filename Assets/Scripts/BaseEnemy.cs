@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BaseEnemy : MonoBehaviour
+public class BaseEnemy : MonoBehaviour, BaseEntity
 {
     // State machine
     private enum States {SEEK, ENGAGE, ATTACK, DIE};
@@ -86,5 +86,10 @@ public class BaseEnemy : MonoBehaviour
         GameObject currentBullet = Instantiate(projectile, shootPoint.position, Quaternion.identity);
         currentBullet.transform.forward = shootPoint.forward;
         currentBullet.GetComponent<Rigidbody>().AddForce(shootPoint.forward * 20, ForceMode.Impulse);
+    }
+
+    public void TakeDamage(int damage,double multiplier)
+    {
+
     }
 }
