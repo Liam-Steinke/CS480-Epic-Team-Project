@@ -6,7 +6,7 @@ public class Pistol : MonoBehaviour
     public Transform shootPoint;
     public GameObject projectile;
 
-    private int ammo = 12;
+    private int ammo = 1200;
 
     public void shoot() {
         if (ammo > 0) {

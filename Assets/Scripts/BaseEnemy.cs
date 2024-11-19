@@ -42,6 +42,7 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
                 break;
             case States.ENGAGE:
                 attackTimer -= Time.deltaTime;
+                LookAtTarget();
                 if (attackTimer <= 0)
                 {
                     state = States.ATTACK;
@@ -91,5 +92,14 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
     public void TakeDamage(int damage,double multiplier)
     {
 
+    }
+    
+    public void LookAtTarget() {
+        if (target != null) {
+            var lookPos = target.transform.position - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2);
+        }
     }
 }

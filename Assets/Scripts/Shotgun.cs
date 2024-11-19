@@ -13,7 +13,7 @@ public class Shotgun : MonoBehaviour
     public GameObject projectile;
     public GameObject pump;
 
-    private int ammo = 12;
+    private int ammo = 1200;
 
 
     // Update is called once per frame
