@@ -23,6 +23,20 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
     public Transform shootPoint;
     public GameObject projectile;
 
+    public Rigidbody[] RigidBodies;
+
+    void Awake() {
+        ToggleRagdoll(false);
+    }
+
+    void ToggleRagdoll(bool toggle) {
+        RigidBodies = GetComponentsInChildren<Rigidbody>();
+
+        foreach(Rigidbody rb in RigidBodies) {
+            rb.isKinematic = !toggle;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -94,7 +108,10 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
         health -= damage * (float) multiplier;
         print("OUCH");
         if (health <= 0.0f) {
-            Destroy(gameObject);
+            animator.enabled = false;
+            GetComponent<WeaponIK>().enabled = false;
+            ToggleRagdoll(true);
+            state = States.DIE;
         }
     }
     
