@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 8352944625358063417, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1715859996}
+      objectReference: {fileID: 1346477360}
     - target: {fileID: 8774757964705171340, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: m_Name
       value: Grunt (1)
@@ -1722,7 +1722,7 @@ PrefabInstance:
     - target: {fileID: 8352944625358063417, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1715859996}
+      objectReference: {fileID: 1346477360}
     - target: {fileID: 8774757964705171340, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: m_Name
       value: Grunt
@@ -2828,7 +2828,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.65835994, g: 0.9559748, b: 0.9512508, a: 1}
+  m_Color: {r: 1, g: 0.66965413, b: 0.6396227, a: 1}
   m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
@@ -4905,87 +4905,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1312414636
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1312414639}
-  - component: {fileID: 1312414638}
-  - component: {fileID: 1312414637}
-  m_Layer: 0
-  m_Name: TriggerEnemy
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1312414637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312414636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3e44b043d4025a4f842af20424ee562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onTrigger:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!65 &1312414638
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312414636}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 9.979439, y: 3.3486328, z: 4.702448}
-  m_Center: {x: 1.6188793, y: 1.1743164, z: 2.289919}
---- !u!4 &1312414639
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312414636}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5459585, y: 0.779, z: 3.4538603}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1315612446
 Mesh:
   m_ObjectHideFlags: 0
@@ -5151,6 +5070,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1346477360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3364806268514395995, guid: 437c7506cf2ef5144b6accfe25ea63fc, type: 3}
+  m_PrefabInstance: {fileID: 535182524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1351991035
 GameObject:
   m_ObjectHideFlags: 0
@@ -5899,11 +5823,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1715859996 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3951244762340834787, guid: 437c7506cf2ef5144b6accfe25ea63fc, type: 3}
-  m_PrefabInstance: {fileID: 535182524}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1743390709
 Mesh:
   m_ObjectHideFlags: 0
@@ -7641,11 +7560,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5169483874873384009, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 7.872
       objectReference: {fileID: 0}
     - target: {fileID: 5169483874873384009, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.54
+      value: 6.43
       objectReference: {fileID: 0}
     - target: {fileID: 5169483874873384009, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7682,7 +7601,7 @@ PrefabInstance:
     - target: {fileID: 8352944625358063417, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1715859996}
+      objectReference: {fileID: 1346477360}
     - target: {fileID: 8774757964705171340, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: m_Name
       value: Grunt (2)
@@ -8357,7 +8276,6 @@ SceneRoots:
   - {fileID: 1498390213}
   - {fileID: 778623639}
   - {fileID: 1596536702}
-  - {fileID: 1312414639}
   - {fileID: 219371630}
   - {fileID: 2008323779}
   - {fileID: 2029782437}

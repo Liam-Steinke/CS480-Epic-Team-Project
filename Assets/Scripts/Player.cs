@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, BaseEntity
+public class Player : MonoBehaviour, Damageable
 {
     public enum States { IMMORTAL, ALIVE, DEAD};
     [SerializeField] private States state = States.IMMORTAL;
 
-    public int maxHealth = 100;
-    public int health = 100;
+    public float maxHealth = 100;
+    public float health = 100;
     public SceneLoader sceneLoader;
 
     private bool canTakeDamage = false;
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour, BaseEntity
         state = newState;
     }
 
-    public void TakeDamage(int damage, double multiplier)
+    public void TakeDamage(float damage, string bodyPart)
     {
         if (!canTakeDamage)
         {

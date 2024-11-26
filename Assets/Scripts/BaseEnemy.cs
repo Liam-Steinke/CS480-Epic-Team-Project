@@ -1,15 +1,18 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BaseEnemy : MonoBehaviour, BaseEntity
+public class BaseEnemy : MonoBehaviour, Damageable
 {
     // State machine
     private enum States {SEEK, ENGAGE, ATTACK, DIE};
     private States state = States.ENGAGE;
 
     // Enemy stats
-    public float health = 5.0f;
-    public float attackTimer = 3.0f;
+    public float health = 3.0f;
+    public float attackTimer = 2.5f;
+    public float damage = 10f;
+    public float range = 100f;
+    public float inaccuracy = 0.5f;
 
     // Navigation agent stuff
     public NavMeshAgent agent;
@@ -22,11 +25,15 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
     // Shooting stuff
     public Transform shootPoint;
     public GameObject projectile;
+    public AudioSource shootSound;
 
     public Rigidbody[] RigidBodies;
 
-    void Awake() {
+    void Start() {
         ToggleRagdoll(false);
+        foreach (Target t in GetComponentsInChildren<Target>()) {
+            t.enemyParent = this;
+        }
     }
 
     void ToggleRagdoll(bool toggle) {
@@ -40,6 +47,7 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
     // Update is called once per frame
     void Update()
     {
+        // Disgusting state machine
         switch (state) {
             case States.SEEK:
                 if (target != null) {
@@ -75,6 +83,7 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
         }
     }
 
+    // Unused...
     public void Dodge()
     {
         int dodge_chance = Random.Range(0,4);
@@ -97,15 +106,27 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
         
     }
 
+    // Create shot when shooting
     private void createShot() {
-        GameObject currentBullet = Instantiate(projectile, shootPoint.position, Quaternion.identity);
-        currentBullet.transform.forward = shootPoint.forward;
-        currentBullet.GetComponent<Rigidbody>().AddForce(shootPoint.forward * 20, ForceMode.Impulse);
+        shootSound.Play();
+        RaycastHit hit;
+        Vector3 miss = new Vector3(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
+
+        Vector3 dir = (target.transform.position - shootPoint.transform.position + miss).normalized;
+        if (Physics.Raycast(shootPoint.transform.position, dir, out hit, range)) {
+            Debug.Log(hit.transform.name);
+
+            Target target = hit.transform.GetComponent<Target>();
+            if (target != null) {
+                target.TakeDamage(damage);
+            }
+        }
     }
 
-    public void TakeDamage(int damage, double multiplier)
+    // Enemy takes damage
+    public void TakeDamage(float damage, string bodyPart)
     {
-        health -= damage * (float) multiplier;
+        health -= damage;
         print("OUCH");
         if (health <= 0.0f) {
             animator.enabled = false;
@@ -115,6 +136,7 @@ public class BaseEnemy : MonoBehaviour, BaseEntity
         }
     }
     
+    // Turn to face player or other target
     public void LookAtTarget() {
         if (target != null) {
             var lookPos = target.transform.position - transform.position;

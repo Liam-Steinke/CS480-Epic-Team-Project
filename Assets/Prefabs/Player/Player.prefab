@@ -1280,7 +1280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3570525589154055130}
   - component: {fileID: 7408744717339017693}
-  - component: {fileID: 7867626378383922285}
+  - component: {fileID: 6541401889789737877}
   m_Layer: 8
   m_Name: HitBox
   m_TagString: Untagged
@@ -1326,7 +1326,7 @@ CapsuleCollider:
   m_Height: 1.2188368
   m_Direction: 1
   m_Center: {x: 0, y: -0.15828454, z: 0}
---- !u!114 &7867626378383922285
+--- !u!114 &6541401889789737877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1335,12 +1335,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1768941755087444965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a778eb46e2913249a51eb5279934ae3, type: 3}
+  m_Script: {fileID: 11500000, guid: a57fdd3121395ba4995c33dddb3dd3d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
   damageMultiplier: 1
-  hitboxParent: {fileID: 3951244762340834787}
+  damageSide: 0
+  bodyPart: 
+  enemyParent: {fileID: 0}
+  player: {fileID: 4228461814257818645}
 --- !u!1 &1825014669554614415
 GameObject:
   m_ObjectHideFlags: 0
@@ -7905,7 +7907,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dfca9fab38e74b44bbb7349938898dfe, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.737
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8033,7 +8035,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f4b9abf402a7ef04c8d47b207eeed32a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

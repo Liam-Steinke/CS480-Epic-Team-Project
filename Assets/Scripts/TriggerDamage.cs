@@ -14,7 +14,7 @@ public class TriggerDamage : MonoBehaviour
     public double damageMultiplier = 1.0;
     public GameObject hitboxParent; // Call own take damage and handle it
     private Component component;
-    private BaseEntity damagedEntity;
+    private Damageable damagedEntity;
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class TriggerDamage : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            damagedEntity.TakeDamage(baseDamage, damageMultiplier);
+            // damagedEntity.TakeDamage(baseDamage, damageMultiplier);
             //if (onTrigger != null)
             //{
             //    onTrigger.Invoke();
