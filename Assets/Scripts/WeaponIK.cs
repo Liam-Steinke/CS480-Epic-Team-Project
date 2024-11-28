@@ -23,4 +23,10 @@ public class WeaponIK : MonoBehaviour
         
         bone.rotation = aimTowards * bone.rotation;
     }
+
+    // Settter for target variable in case not set in editor
+    public void SetTarget(Transform newTarget)
+    {
+        targetTransform = newTarget;
+    }
 }

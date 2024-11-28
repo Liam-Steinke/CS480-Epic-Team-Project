@@ -85,7 +85,7 @@ MonoBehaviour:
   range: 100
   inaccuracy: 0.2
   agent: {fileID: 5394380943777620539}
-  target: {fileID: 0}
+  target: {fileID: 4723146561135533345, guid: 5e56bcad6dd4abf45a6f1f707d747365, type: 3}
   animator: {fileID: 2616902809651193778}
   shootPoint: {fileID: 2044423458394628847}
   projectile: {fileID: 1209441644125003762, guid: 5bd986f0c0cc15b46ab50392fddc57fe, type: 3}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6736e38b9d7252049a5695800ecb6028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 7532967439504033054, guid: 5e56bcad6dd4abf45a6f1f707d747365, type: 3}
   aimTransform: {fileID: 2044423458394628847}
   bone: {fileID: 2812247644961073660}
 --- !u!1001 &542542849953245493
