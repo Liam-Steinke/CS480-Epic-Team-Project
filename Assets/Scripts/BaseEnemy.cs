@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class BaseEnemy : MonoBehaviour, Damageable
 {
     // State machine
-    private enum States {SEEK, ENGAGE, ATTACK, DIE};
+    private enum States { SEEK, ENGAGE, ATTACK, DIE };
     private States state = States.ENGAGE;
 
     // Enemy stats
@@ -39,7 +39,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
     void ToggleRagdoll(bool toggle) {
         RigidBodies = GetComponentsInChildren<Rigidbody>();
 
-        foreach(Rigidbody rb in RigidBodies) {
+        foreach (Rigidbody rb in RigidBodies) {
             rb.isKinematic = !toggle;
         }
     }
@@ -53,13 +53,13 @@ public class BaseEnemy : MonoBehaviour, Damageable
                 if (target != null) {
                     agent.SetDestination(target.transform.position);
                     if (!agent.pathPending) {
-                            if (agent.remainingDistance <= agent.stoppingDistance) {
-                                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
-                                    state = States.ENGAGE;
-                                    ChangeAnimation("Idle");
-                                }
+                        if (agent.remainingDistance <= agent.stoppingDistance) {
+                            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
+                                state = States.ENGAGE;
+                                ChangeAnimation("Idle");
                             }
                         }
+                    }
                 }
                 break;
             case States.ENGAGE:
@@ -72,7 +72,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
                     createShot();
                     attackTimer = 3.0f;
                 }
-                
+
                 break;
             case States.ATTACK:
                 state = States.SEEK;
@@ -86,13 +86,13 @@ public class BaseEnemy : MonoBehaviour, Damageable
     // Unused...
     public void Dodge()
     {
-        int dodge_chance = Random.Range(0,4);
-        int side = Random.Range(0,2);
+        int dodge_chance = Random.Range(0, 4);
+        int side = Random.Range(0, 2);
         if (dodge_chance == 3) {
-            if (side == 0){
+            if (side == 0) {
                 transform.position += new Vector3(4, 0);
             }
-            else if (side == 1){
+            else if (side == 1) {
                 transform.position += new Vector3(-4, 0);
             }
         }
@@ -103,7 +103,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
             currentAnimation = animation;
             animator.CrossFade(animation, 0.2f);
         }
-        
+
     }
 
     // Create shot when shooting
@@ -135,7 +135,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
             state = States.DIE;
         }
     }
-    
+
     // Turn to face player or other target
     public void LookAtTarget() {
         if (target != null) {
@@ -144,5 +144,11 @@ public class BaseEnemy : MonoBehaviour, Damageable
             var rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2);
         }
+    }
+
+    // Setter for target variable in case not set in editor
+    public void SetTarget(GameObject newTarget)
+    {
+        target = newTarget;
     }
 }
