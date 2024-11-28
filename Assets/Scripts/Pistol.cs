@@ -6,6 +6,7 @@ public class Pistol : MonoBehaviour
     public Transform shootPoint;
     public GameObject projectile;
     public GameObject shootSound;
+    public ParticleLight muzzleFlash;
 
     public float damage = 1f;
 
@@ -17,6 +18,7 @@ public class Pistol : MonoBehaviour
             ammo -= 1;
             shootSound.GetComponent<AudioSource>().Play();
             createShot();
+            muzzleFlash.Activate();
         }
     }
 

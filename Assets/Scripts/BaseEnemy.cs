@@ -9,10 +9,14 @@ public class BaseEnemy : MonoBehaviour, Damageable
 
     // Enemy stats
     public float health = 3.0f;
-    public float attackTimer = 2.5f;
+    // Time between subsequent attacks
+    public float attackSpeed = 2.5f;
     public float damage = 10f;
     public float range = 100f;
-    public float inaccuracy = 0.5f;
+    public float inaccuracy = 0.2f;
+
+    // Internal delay between attacks
+    private float attackTimer = 3.0f;
 
     // Navigation agent stuff
     public NavMeshAgent agent;
@@ -26,6 +30,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
     public Transform shootPoint;
     public GameObject projectile;
     public AudioSource shootSound;
+    public ParticleLight muzzleFlash;
 
     public Rigidbody[] RigidBodies;
 
@@ -70,8 +75,10 @@ public class BaseEnemy : MonoBehaviour, Damageable
                     state = States.ATTACK;
                     ChangeAnimation("Idle");
                     createShot();
-                    attackTimer = 3.0f;
+                    attackTimer = attackSpeed;
                 }
+
+                
                 
                 break;
             case States.ATTACK:
@@ -109,6 +116,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
     // Create shot when shooting
     private void createShot() {
         shootSound.Play();
+        muzzleFlash.Activate();
         RaycastHit hit;
         Vector3 miss = new Vector3(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
 
