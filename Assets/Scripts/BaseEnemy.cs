@@ -34,17 +34,21 @@ public class BaseEnemy : MonoBehaviour, Damageable
 
     public Rigidbody[] RigidBodies;
 
-    void Start() {
+    void Start()
+    {
         ToggleRagdoll(false);
-        foreach (Target t in GetComponentsInChildren<Target>()) {
+        foreach (Target t in GetComponentsInChildren<Target>())
+        {
             t.enemyParent = this;
         }
     }
 
-    void ToggleRagdoll(bool toggle) {
+    void ToggleRagdoll(bool toggle)
+    {
         RigidBodies = GetComponentsInChildren<Rigidbody>();
 
-        foreach (Rigidbody rb in RigidBodies) {
+        foreach (Rigidbody rb in RigidBodies)
+        {
             rb.isKinematic = !toggle;
         }
     }
@@ -52,14 +56,25 @@ public class BaseEnemy : MonoBehaviour, Damageable
     // Update is called once per frame
     void Update()
     {
+        //do nothing if paused 
+        if (PauseMenu.paused)
+        {
+            return;
+        }
+
         // Disgusting state machine
-        switch (state) {
+        switch (state)
+        {
             case States.SEEK:
-                if (target != null) {
+                if (target != null)
+                {
                     agent.SetDestination(target.transform.position);
-                    if (!agent.pathPending) {
-                        if (agent.remainingDistance <= agent.stoppingDistance) {
-                            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f) {
+                    if (!agent.pathPending)
+                    {
+                        if (agent.remainingDistance <= agent.stoppingDistance)
+                        {
+                            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                            {
                                 state = States.ENGAGE;
                                 ChangeAnimation("Idle");
                             }
@@ -78,7 +93,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
                     attackTimer = attackSpeed;
                 }
 
-                
+
 
                 break;
             case States.ATTACK:
@@ -95,18 +110,23 @@ public class BaseEnemy : MonoBehaviour, Damageable
     {
         int dodge_chance = Random.Range(0, 4);
         int side = Random.Range(0, 2);
-        if (dodge_chance == 3) {
-            if (side == 0) {
+        if (dodge_chance == 3)
+        {
+            if (side == 0)
+            {
                 transform.position += new Vector3(4, 0);
             }
-            else if (side == 1) {
+            else if (side == 1)
+            {
                 transform.position += new Vector3(-4, 0);
             }
         }
     }
     // Use to transition smoothly between animations
-    public void ChangeAnimation(string animation) {
-        if (currentAnimation != animation) {
+    public void ChangeAnimation(string animation)
+    {
+        if (currentAnimation != animation)
+        {
             currentAnimation = animation;
             animator.CrossFade(animation, 0.2f);
         }
@@ -114,18 +134,21 @@ public class BaseEnemy : MonoBehaviour, Damageable
     }
 
     // Create shot when shooting
-    private void createShot() {
+    private void createShot()
+    {
         shootSound.Play();
         muzzleFlash.Activate();
         RaycastHit hit;
         Vector3 miss = new Vector3(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
 
         Vector3 dir = (target.transform.position - shootPoint.transform.position + miss).normalized;
-        if (Physics.Raycast(shootPoint.transform.position, dir, out hit, range)) {
+        if (Physics.Raycast(shootPoint.transform.position, dir, out hit, range))
+        {
             Debug.Log(hit.transform.name);
 
             Target target = hit.transform.GetComponent<Target>();
-            if (target != null) {
+            if (target != null)
+            {
                 target.TakeDamage(damage);
             }
         }
@@ -136,7 +159,8 @@ public class BaseEnemy : MonoBehaviour, Damageable
     {
         health -= damage;
         print("OUCH");
-        if (health <= 0.0f) {
+        if (health <= 0.0f)
+        {
             animator.enabled = false;
             GetComponent<WeaponIK>().enabled = false;
             ToggleRagdoll(true);
@@ -145,8 +169,10 @@ public class BaseEnemy : MonoBehaviour, Damageable
     }
 
     // Turn to face player or other target
-    public void LookAtTarget() {
-        if (target != null) {
+    public void LookAtTarget()
+    {
+        if (target != null)
+        {
             var lookPos = target.transform.position - transform.position;
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);

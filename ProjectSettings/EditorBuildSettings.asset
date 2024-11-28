@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: da3ee2f73ae25bf4e8e55f10b49c97c3
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/HealthTester.unity
     guid: e5a3b3150ff5f894dafc19f1ad4ac551
   m_configObjects:

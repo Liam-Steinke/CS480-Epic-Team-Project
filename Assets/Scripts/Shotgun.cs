@@ -19,6 +19,11 @@ public class Shotgun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //do nothing if paused 
+        if (PauseMenu.paused)
+        {
+            return;
+        }
         // Check if pump is pulled back
         if (pump.transform.localPosition.z <= pumpLimit)
         {

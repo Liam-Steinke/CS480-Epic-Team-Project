@@ -17,12 +17,17 @@ public class Grenade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //do nothing if paused 
+        if (PauseMenu.paused)
+        {
+            return;
+        }
         if (timer_start)
         {
             Timer_Text.GetComponent<TextMeshProUGUI>().text = timer.ToString("+#.#;-#.#");
@@ -30,7 +35,7 @@ public class Grenade : MonoBehaviour
         }
         if (timer < 0)
         {
-            timer_start= false;
+            timer_start = false;
             Timer_Text.SetActive(false);
             Detonate();
         }
@@ -38,10 +43,10 @@ public class Grenade : MonoBehaviour
 
     public void Active()
     {
-        Trigger.GetComponent<MeshRenderer> ().material = active_mat;
-        Line1.GetComponent<MeshRenderer> ().material = active_mat;
-        Line2.GetComponent<MeshRenderer> ().material = active_mat;
-        Line3.GetComponent<MeshRenderer> ().material = active_mat;
+        Trigger.GetComponent<MeshRenderer>().material = active_mat;
+        Line1.GetComponent<MeshRenderer>().material = active_mat;
+        Line2.GetComponent<MeshRenderer>().material = active_mat;
+        Line3.GetComponent<MeshRenderer>().material = active_mat;
         timer_start = true;
         Timer_Text.SetActive(true);
     }

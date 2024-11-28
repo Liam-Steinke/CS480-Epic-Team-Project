@@ -31,6 +31,7 @@ public class SceneLoader : MonoBehaviour
         //set singletion to this instance
         singleton = this;
         //print("Start done SC");
+
     }
 
     public void GoToScene(int sceneIndex)
@@ -39,11 +40,6 @@ public class SceneLoader : MonoBehaviour
         //print("starting scne e = " + sceneIndex);
         StartCoroutine(GoToSceneRoutine(sceneIndex));
 
-    }
-
-    public void GoToScene(String sceneName)
-    {
-        Scene s = SceneManager.GetSceneByName(sceneName);
     }
 
     IEnumerator GoToSceneRoutine(int sceneIndex)
@@ -81,5 +77,38 @@ public class SceneLoader : MonoBehaviour
         operation.allowSceneActivation = true;
     }
 
+    IEnumerator GoToSceneAsyncRoutine(String sceneName)
+    {
+        fadeScreen.FadeOut();
+        //Launch the new scene
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName); //load the scene then let fade finish
+        operation.allowSceneActivation = false;
 
+        float timer = 0;
+        //wait for the scene to finish loading and fade animation to be done
+        while (timer <= fadeScreen.fadeDuration && !operation.isDone)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        //do switch 
+        operation.allowSceneActivation = true;
+    }
+
+
+    //Method for fading to a new scene using the scene name instead of the scene index
+    public void GoToSceneAsync(String sceneName)
+    {
+        StartCoroutine(GoToSceneAsyncRoutine(sceneName));
+
+    }
+
+
+    //method for resetting/restarting the current scene
+    public void resetScene()
+    {
+        int a = SceneManager.GetActiveScene().buildIndex;
+        GoToSceneAsync(a);
+    }
 }

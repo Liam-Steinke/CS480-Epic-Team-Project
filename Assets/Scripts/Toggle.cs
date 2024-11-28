@@ -44,6 +44,11 @@ public class Toggle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //do nothing if paused 
+        if (PauseMenu.paused)
+        {
+            return;
+        }
         if (toggleAction.triggered)
         {
             //Debug.Log("A button Pressed");

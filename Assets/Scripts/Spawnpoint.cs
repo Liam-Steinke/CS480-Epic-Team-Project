@@ -20,13 +20,18 @@ public class Spawnpoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //do nothing if paused 
+        if (PauseMenu.paused)
+        {
+            return;
+        }
         if (canSpawn && timer >= 0f)
         {
             timer -= Time.deltaTime;
             Spawn();
         }
     }
-    
+
     // Resets the timer
     void ResetTimer()
     {

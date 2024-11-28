@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, Damageable
 {
-    public enum States { IMMORTAL, ALIVE, DEAD};
+    public enum States { IMMORTAL, ALIVE, DEAD };
     [SerializeField] private States state = States.IMMORTAL;
 
     public float maxHealth = 100;
@@ -25,6 +25,12 @@ public class Player : MonoBehaviour, Damageable
     // Update is called once per frame
     void Update()
     {
+        //do nothing if paused 
+        if (PauseMenu.paused)
+        {
+            return;
+        }
+
         switch (state)
         {
             case States.IMMORTAL:
@@ -57,7 +63,7 @@ public class Player : MonoBehaviour, Damageable
         if (health <= 0)
         {
             // We either reproduce damageSFX or deathSFX but not both
-            
+
             Die();
         }
         else
@@ -73,7 +79,7 @@ public class Player : MonoBehaviour, Damageable
         setState(States.DEAD);
         health = 0;
         sceneLoader.GoToScene(0);
-        
+
         // Reproduce death sound and implement a restart option
         // TODO: Implement restart functionality and sound reproduction
         //Debug.Log("Player died");
