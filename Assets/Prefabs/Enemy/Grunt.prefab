@@ -80,7 +80,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   attackSpeed: 2.5
-  reactionTime: 1
   damage: 10
   range: 100
   inaccuracy: 0.2
@@ -91,6 +90,7 @@ MonoBehaviour:
   projectile: {fileID: 1209441644125003762, guid: 5bd986f0c0cc15b46ab50392fddc57fe, type: 3}
   shootSound: {fileID: 8062575629049087937}
   muzzleFlash: {fileID: 8188750992155866343}
+  tracer: {fileID: 9014969426337130066, guid: bb6211d402b7ea0499dd58154c8ec95f, type: 3}
   RigidBodies: []
 --- !u!195 &5394380943777620539
 NavMeshAgent:

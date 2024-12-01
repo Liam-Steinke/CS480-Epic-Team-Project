@@ -31,6 +31,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
     public GameObject projectile;
     public AudioSource shootSound;
     public ParticleLight muzzleFlash;
+    public Tracer tracer;
 
     public Rigidbody[] RigidBodies;
 
@@ -139,18 +140,22 @@ public class BaseEnemy : MonoBehaviour, Damageable
         shootSound.Play();
         muzzleFlash.Activate();
         RaycastHit hit;
+        Tracer trace = Instantiate(tracer, new Vector3(0, 0, 0), Quaternion.identity);
         Vector3 miss = new Vector3(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
 
         Vector3 dir = (target.transform.position - shootPoint.transform.position + miss).normalized;
         if (Physics.Raycast(shootPoint.transform.position, dir, out hit, range))
         {
             Debug.Log(hit.transform.name);
+            trace.AimAt(shootPoint.transform.position, hit.point);
 
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
             {
                 target.TakeDamage(damage);
             }
+        } else {
+            trace.AimAt(shootPoint.transform.position, shootPoint.transform.position + (shootPoint.transform.forward * range));
         }
     }
 

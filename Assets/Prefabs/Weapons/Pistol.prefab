@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 2110433480509360638}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.060500003, z: 0.2917}
+  m_LocalPosition: {x: 0, y: 0.0813, z: 0.2556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -404,7 +404,11 @@ MonoBehaviour:
   projectile: {fileID: 1209441644125003762, guid: 5bd986f0c0cc15b46ab50392fddc57fe, type: 3}
   shootSound: {fileID: 6691120242278286604}
   muzzleFlash: {fileID: 7605646942326967887}
+  tracer: {fileID: 9014969426337130066, guid: bb6211d402b7ea0499dd58154c8ec95f, type: 3}
   damage: 1
+  ammo: 1200
+  range: 100
+  inaccuracy: 0
 --- !u!1 &6691120242278286604
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,11 +641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2195132184933530463, guid: 883241637179e6341a97f6406ca2fa1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0734
+      value: 0.0841
       objectReference: {fileID: 0}
     - target: {fileID: 2195132184933530463, guid: 883241637179e6341a97f6406ca2fa1e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2486
+      value: 0.2508
       objectReference: {fileID: 0}
     - target: {fileID: 2195132184933530463, guid: 883241637179e6341a97f6406ca2fa1e, type: 3}
       propertyPath: m_LocalRotation.w
