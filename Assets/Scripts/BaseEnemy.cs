@@ -169,6 +169,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
             animator.enabled = false;
             GetComponent<WeaponIK>().enabled = false;
             ToggleRagdoll(true);
+            gameObject.SendMessageUpwards("OnEnemyKill");
             state = States.DIE;
         }
     }
