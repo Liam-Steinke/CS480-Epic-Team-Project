@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class BaseEnemy : MonoBehaviour, Damageable
 {
@@ -16,7 +17,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
     public float inaccuracy = 0.2f;
 
     // Internal delay between attacks
-    private float attackTimer = 3.0f;
+    private float attackTimer = 2.5f;
 
     // Navigation agent stuff
     public NavMeshAgent agent;
@@ -33,6 +34,11 @@ public class BaseEnemy : MonoBehaviour, Damageable
     public ParticleLight muzzleFlash;
     public Tracer tracer;
 
+    // Sightline stuff
+    private static float DEFAULT_PATIENCE = 4f;
+    private float patience = DEFAULT_PATIENCE;
+    private bool seeTarget = false;
+
     public Rigidbody[] RigidBodies;
 
     void Start()
@@ -42,6 +48,8 @@ public class BaseEnemy : MonoBehaviour, Damageable
         {
             t.enemyParent = this;
         }
+        patience += Random.Range(-1, 3);
+        attackTimer = attackSpeed + Random.Range(0f, 1f);
     }
 
     void ToggleRagdoll(bool toggle)
@@ -69,9 +77,16 @@ public class BaseEnemy : MonoBehaviour, Damageable
             case States.SEEK:
                 if (target != null)
                 {
+                    LookAtTarget();
                     agent.SetDestination(target.transform.position);
                     if (!agent.pathPending)
                     {
+                        if (seeTarget) {
+                            state = States.ENGAGE;
+                            ChangeAnimation("Idle");
+                            agent.SetDestination(transform.position);
+                            return;
+                        }
                         if (agent.remainingDistance <= agent.stoppingDistance)
                         {
                             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -88,41 +103,30 @@ public class BaseEnemy : MonoBehaviour, Damageable
                 LookAtTarget();
                 if (attackTimer <= 0)
                 {
-                    state = States.ATTACK;
-                    ChangeAnimation("Idle");
-                    createShot();
-                    attackTimer = attackSpeed;
+                    if (seeTarget) {
+                        state = States.ATTACK;
+                        ChangeAnimation("Idle");
+                        createShot();
+                        attackTimer = attackSpeed + Random.Range(0f, 1f);
+                    }
                 }
 
+                if (patience <= 0) {
+                    ChangeAnimation("Walk");
+                    state = States.SEEK;
+                }
 
 
                 break;
             case States.ATTACK:
-                state = States.SEEK;
-                ChangeAnimation("Walk");
+                state = States.ENGAGE;
+                
                 break;
             case States.DIE:
                 break;
         }
     }
 
-    // Unused...
-    public void Dodge()
-    {
-        int dodge_chance = Random.Range(0, 4);
-        int side = Random.Range(0, 2);
-        if (dodge_chance == 3)
-        {
-            if (side == 0)
-            {
-                transform.position += new Vector3(4, 0);
-            }
-            else if (side == 1)
-            {
-                transform.position += new Vector3(-4, 0);
-            }
-        }
-    }
     // Use to transition smoothly between animations
     public void ChangeAnimation(string animation)
     {
@@ -146,7 +150,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
         Vector3 dir = (target.transform.position - shootPoint.transform.position + miss).normalized;
         if (Physics.Raycast(shootPoint.transform.position, dir, out hit, range))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
             trace.AimAt(shootPoint.transform.position, hit.point);
 
             Target target = hit.transform.GetComponent<Target>();
@@ -166,11 +170,14 @@ public class BaseEnemy : MonoBehaviour, Damageable
         print("OUCH");
         if (health <= 0.0f)
         {
-            animator.enabled = false;
-            GetComponent<WeaponIK>().enabled = false;
-            ToggleRagdoll(true);
-            gameObject.SendMessageUpwards("OnEnemyKill");
-            state = States.DIE;
+            if (state != States.DIE) {
+                animator.enabled = false;
+                GetComponent<WeaponIK>().enabled = false;
+                ToggleRagdoll(true);
+                gameObject.SendMessageUpwards("OnEnemyKill");
+                state = States.DIE;
+                Destroy(gameObject, 5f);
+            }
         }
     }
 
@@ -184,6 +191,25 @@ public class BaseEnemy : MonoBehaviour, Damageable
             var rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2);
         }
+        // Check if player can be seen. Causes chase behavior if patience runs out.
+        RaycastHit hit;
+        Vector3 dir = (target.transform.position - (transform.position + new Vector3(0, 1.8f, 0))).normalized;
+        if (Physics.Raycast(shootPoint.transform.position, dir, out hit, range)) {
+            // Debug.Log(hit.transform.gameObject.layer);
+            if (hit.transform.gameObject.layer == 8) {
+                if (!seeTarget) {
+                    patience = DEFAULT_PATIENCE + Random.Range(-1, 3);
+                    seeTarget = true;
+                    attackTimer = attackSpeed + Random.Range(0f, 1f);
+                }
+                
+            } else {
+                patience -= Time.deltaTime;
+                seeTarget = false;
+            }
+            return;
+        }
+
     }
 
     // Setter for target variable in case not set in editor
