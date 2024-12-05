@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 // Damageable point on a game object
 //
@@ -16,15 +17,18 @@ public class Target : MonoBehaviour
     // Used to determine pain animations.
     public float damageSide = 0f;
     public string bodyPart = "";
-    
+
     public BaseEnemy enemyParent;
     public Player player;
-
     // Tell this target's parent to get damaged
-    public void TakeDamage(float damage) {
-        if (player != null) {
+    public void TakeDamage(float damage)
+    {
+        if (player != null)
+        {
             player.TakeDamage(damage, "");
-        } else {
+        }
+        else
+        {
             enemyParent.TakeDamage(damage * damageMultiplier, bodyPart);
         }
     }

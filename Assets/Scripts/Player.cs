@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Player : MonoBehaviour, Damageable
 {
+
     public enum States { IMMORTAL, ALIVE, DEAD };
     [SerializeField] private States state = States.IMMORTAL;
 
@@ -14,6 +16,9 @@ public class Player : MonoBehaviour, Damageable
     private bool canTakeDamage = false;
     public AudioSource deathSFX, damageSFX;
     public HealthBar healthBar;
+    public DamageFlash damageFlash;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +57,11 @@ public class Player : MonoBehaviour, Damageable
 
     public void TakeDamage(float damage, string bodyPart)
     {
+        if (damageFlash != null)
+        {
+            damageFlash.DamageFlasher();
+        }
+
         if (!canTakeDamage)
         {
             return;
