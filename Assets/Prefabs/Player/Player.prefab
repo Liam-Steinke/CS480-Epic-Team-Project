@@ -9014,11 +9014,7 @@ MonoBehaviour:
   m_DamageParameters:
     m_ApertureSize: 0.9
     m_FeatheringEffect: 0.2
-<<<<<<< Updated upstream
-    m_EaseInTime: 0.2
-=======
     m_EaseInTime: 0.25
->>>>>>> Stashed changes
     m_EaseOutTime: 0.2
     m_EaseInTimeLock: 0
     m_EaseOutDelayTime: 0
