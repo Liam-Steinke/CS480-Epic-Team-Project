@@ -39,7 +39,7 @@ namespace UnityEngine.XR.Interaction.Toolkit
 
         public static readonly VignetteParameters DamageEffect = new VignetteParameters
         {
-            apertureSize = 0.7f,
+            apertureSize = 0.9f,
             featheringEffect = 0.2f,
             easeInTime = 0.2f,
             easeOutTime = 0.2f,
