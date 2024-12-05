@@ -34,10 +34,15 @@ public class BaseEnemy : MonoBehaviour, Damageable
     public ParticleLight muzzleFlash;
     public Tracer tracer;
 
+    // Item dropping on death stuff
+    public ItemSpawner[] ItemSpawners;
+    public GameObject heldWeapon;
+
     // Sightline stuff
     private static float DEFAULT_PATIENCE = 4f;
     private float patience = DEFAULT_PATIENCE;
     private bool seeTarget = false;
+
 
     public Rigidbody[] RigidBodies;
 
@@ -48,6 +53,9 @@ public class BaseEnemy : MonoBehaviour, Damageable
         {
             t.enemyParent = this;
         }
+
+
+        // Randomize initial patience and attack delay
         patience += Random.Range(-1, 3);
         attackTimer = attackSpeed + Random.Range(0f, 1f);
     }
@@ -171,6 +179,14 @@ public class BaseEnemy : MonoBehaviour, Damageable
         if (health <= 0.0f)
         {
             if (state != States.DIE) {
+                foreach (ItemSpawner i in GetComponentsInChildren<ItemSpawner>())
+                {
+                    i.spawnItem();
+                }
+                if (heldWeapon != null) {
+                    heldWeapon.SetActive(false);
+                }
+
                 animator.enabled = false;
                 GetComponent<WeaponIK>().enabled = false;
                 ToggleRagdoll(true);

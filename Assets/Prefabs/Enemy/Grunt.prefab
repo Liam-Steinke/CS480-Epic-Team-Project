@@ -91,6 +91,8 @@ MonoBehaviour:
   shootSound: {fileID: 8062575629049087937}
   muzzleFlash: {fileID: 8188750992155866343}
   tracer: {fileID: 9014969426337130066, guid: bb6211d402b7ea0499dd58154c8ec95f, type: 3}
+  ItemSpawners: []
+  heldWeapon: {fileID: 8557914109211642400}
   RigidBodies: []
 --- !u!195 &5394380943777620539
 NavMeshAgent:
@@ -2079,6 +2081,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 37aa083f3e30a6948aebdcfa62d8ce40, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8062575629049087937}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 37aa083f3e30a6948aebdcfa62d8ce40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8715035009745143156}
   m_SourcePrefab: {fileID: 100100000, guid: 37aa083f3e30a6948aebdcfa62d8ce40, type: 3}
 --- !u!1 &8557914109211642400 stripped
 GameObject:
@@ -2181,6 +2186,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8715035009745143156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557914109211642400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff7b819a977bca4cb4c3b0dca393dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnedObject: {fileID: 5895958484121045022, guid: 25e7a41cae882634581053badb3ef4fd, type: 3}
 --- !u!4 &9045481118512271514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 37aa083f3e30a6948aebdcfa62d8ce40, type: 3}
