@@ -6031,7 +6031,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 10836522431505001, guid: e3d8e68167d600c4c9af1b6549d874ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.999999
+      value: 11.89
       objectReference: {fileID: 0}
     - target: {fileID: 10836522431505001, guid: e3d8e68167d600c4c9af1b6549d874ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21023,7 +21023,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 10836522431505001, guid: e3d8e68167d600c4c9af1b6549d874ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.499999
+      value: 10.75
       objectReference: {fileID: 0}
     - target: {fileID: 10836522431505001, guid: e3d8e68167d600c4c9af1b6549d874ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22071,7 +22071,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 10836522431505001, guid: e3d8e68167d600c4c9af1b6549d874ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0748062
+      value: -1.24
       objectReference: {fileID: 0}
     - target: {fileID: 10836522431505001, guid: e3d8e68167d600c4c9af1b6549d874ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22109,6 +22109,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4449272841277153444, guid: e3d8e68167d600c4c9af1b6549d874ea, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 2493157834266654332, guid: 48a9c3acd82b2664ea50c2948a18edd8, type: 3}
     - target: {fileID: 6765470905758474537, guid: e3d8e68167d600c4c9af1b6549d874ea, type: 3}
       propertyPath: m_Name
       value: SpawnPoint2

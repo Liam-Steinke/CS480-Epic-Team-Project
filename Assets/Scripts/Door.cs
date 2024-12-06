@@ -4,25 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    private BoxCollider collider;
+    private BoxCollider doorCollider;
     public bool startOpen = true;
     public UnityEvent doorOpened;
     public UnityEvent doorClosed;
 
     void Start() {
-        collider = gameObject.GetComponent<BoxCollider>();
+        doorCollider = gameObject.GetComponent<BoxCollider>();
         if (startOpen) {
             openDoor();
         }
     }
     
     public void openDoor() {
-        collider.enabled = false;
+        doorCollider.enabled = false;
         doorOpened.Invoke();
     }
 
     public void closeDoor() {
-        collider.enabled = true;
+        doorCollider.enabled = true;
         doorClosed.Invoke();
     }
 

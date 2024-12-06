@@ -11,9 +11,11 @@ public class BaseEnemy : MonoBehaviour, Damageable
     // Enemy stats
     public float health = 3.0f;
     // Time between subsequent attacks
-    public float attackSpeed = 2.5f;
-    public float damage = 10f;
-    public float range = 100f;
+    public float attackSpeed = 2.0f;
+    public float damage = 1f;
+    public float bulletCount = 1;
+    public float bulletRange = 100f;
+    public bool chasePlayer = false;
     public float inaccuracy = 0.2f;
 
     // Internal delay between attacks
@@ -39,7 +41,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
     public GameObject heldWeapon;
 
     // Sightline stuff
-    private static float DEFAULT_PATIENCE = 4f;
+    private static float DEFAULT_PATIENCE = 3f;
     private float patience = DEFAULT_PATIENCE;
     private bool seeTarget = false;
 
@@ -89,7 +91,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
                     agent.SetDestination(target.transform.position);
                     if (!agent.pathPending)
                     {
-                        if (seeTarget) {
+                        if (seeTarget && !chasePlayer) {
                             state = States.ENGAGE;
                             ChangeAnimation("Idle");
                             agent.SetDestination(transform.position);
@@ -109,25 +111,37 @@ public class BaseEnemy : MonoBehaviour, Damageable
             case States.ENGAGE:
                 attackTimer -= Time.deltaTime;
                 LookAtTarget();
-                if (attackTimer <= 0)
-                {
-                    if (seeTarget) {
-                        state = States.ATTACK;
-                        ChangeAnimation("Idle");
-                        createShot();
-                        attackTimer = attackSpeed + Random.Range(0f, 1f);
-                    }
-                }
 
                 if (patience <= 0) {
                     ChangeAnimation("Walk");
                     state = States.SEEK;
+                } else {
+                    if (attackTimer <= 0)
+                    {
+                    if (seeTarget) {
+                        state = States.ATTACK;
+                        ChangeAnimation("Idle");
+                        shoot();
+                        attackTimer = attackSpeed + Random.Range(0f, 1f);
+                        return;
+                    }
+                    }
                 }
+                
+                
+
+                
 
 
                 break;
             case States.ATTACK:
-                state = States.ENGAGE;
+                if (chasePlayer) {
+                    ChangeAnimation("Walk");
+                    state = States.SEEK;
+                } else {
+                    state = States.ENGAGE;
+                }
+                
                 
                 break;
             case States.DIE:
@@ -147,16 +161,25 @@ public class BaseEnemy : MonoBehaviour, Damageable
     }
 
     // Create shot when shooting
-    private void createShot()
+    protected virtual void shoot()
     {
         shootSound.Play();
         muzzleFlash.Activate();
+        
+        for (int i = 0; i < bulletCount; i++) {
+            Vector3 miss = new Vector3(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
+            createShot(miss);
+        }
+        
+    }
+
+    protected void createShot(Vector3 offset) {
         RaycastHit hit;
         Tracer trace = Instantiate(tracer, new Vector3(0, 0, 0), Quaternion.identity);
-        Vector3 miss = new Vector3(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
+        
 
-        Vector3 dir = (target.transform.position - shootPoint.transform.position + miss).normalized;
-        if (Physics.Raycast(shootPoint.transform.position, dir, out hit, range))
+        Vector3 dir = (target.transform.position - shootPoint.transform.position + offset).normalized;
+        if (Physics.Raycast(shootPoint.transform.position, dir, out hit, bulletRange))
         {
             //Debug.Log(hit.transform.name);
             trace.AimAt(shootPoint.transform.position, hit.point);
@@ -167,7 +190,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
                 target.TakeDamage(damage);
             }
         } else {
-            trace.AimAt(shootPoint.transform.position, shootPoint.transform.position + (shootPoint.transform.forward * range));
+            trace.AimAt(shootPoint.transform.position, shootPoint.transform.position + (shootPoint.transform.forward * bulletRange));
         }
     }
 
@@ -206,24 +229,25 @@ public class BaseEnemy : MonoBehaviour, Damageable
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2);
-        }
-        // Check if player can be seen. Causes chase behavior if patience runs out.
-        RaycastHit hit;
-        Vector3 dir = (target.transform.position - (transform.position + new Vector3(0, 1.8f, 0))).normalized;
-        if (Physics.Raycast(shootPoint.transform.position, dir, out hit, range)) {
-            // Debug.Log(hit.transform.gameObject.layer);
-            if (hit.transform.gameObject.layer == 8) {
-                if (!seeTarget) {
-                    patience = DEFAULT_PATIENCE + Random.Range(-1, 3);
-                    seeTarget = true;
-                    attackTimer = attackSpeed + Random.Range(0f, 1f);
+            
+            // Check if player can be seen. Causes chase behavior if patience runs out.
+            RaycastHit hit;
+            Vector3 dir = (target.transform.position - (transform.position + new Vector3(0, 1.8f, 0))).normalized;
+            if (Physics.Raycast(shootPoint.transform.position, dir, out hit, bulletRange)) {
+                // Debug.Log(hit.transform.gameObject.layer);
+                if (hit.transform.gameObject.layer == 8) {
+                    if (!seeTarget) {
+                        patience = DEFAULT_PATIENCE + Random.Range(-1, 2);
+                        seeTarget = true;
+                        attackTimer = attackSpeed + Random.Range(0f, 1f);
+                    }
+                    
+                } else {
+                    patience -= Time.deltaTime;
+                    seeTarget = false;
                 }
-                
-            } else {
-                patience -= Time.deltaTime;
-                seeTarget = false;
+                return;
             }
-            return;
         }
 
     }
