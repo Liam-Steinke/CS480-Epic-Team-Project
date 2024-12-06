@@ -867,9 +867,9 @@ Transform:
   - {fileID: 8547759706510929917}
   - {fileID: 8384356291479352450}
   - {fileID: 6922908408392039859}
-  - {fileID: 1175401115396646586}
   - {fileID: 3466858402128154868}
   - {fileID: 6255944573944638926}
+  - {fileID: 1175401115396646586}
   - {fileID: 6617979969295697866}
   - {fileID: 3716125921357923415}
   - {fileID: 8256053767946580285}
@@ -895,7 +895,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
