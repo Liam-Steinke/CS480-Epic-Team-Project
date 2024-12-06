@@ -768,7 +768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1485498935379125524, guid: 155d04772166c4449ae0145309fe682c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.272979
+      value: -12.46
       objectReference: {fileID: 0}
     - target: {fileID: 1485498935379125524, guid: 155d04772166c4449ae0145309fe682c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -803,12 +803,20 @@ PrefabInstance:
       value: ElevatorSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 4887789919691502624, guid: 155d04772166c4449ae0145309fe682c, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887789919691502624, guid: 155d04772166c4449ae0145309fe682c, type: 3}
       propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 194815708}
+      objectReference: {fileID: 810531498}
     - target: {fileID: 4887789919691502624, guid: 155d04772166c4449ae0145309fe682c, type: 3}
       propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: GoToScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887789919691502624, guid: 155d04772166c4449ae0145309fe682c, type: 3}
+      propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SceneLoader, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -818,11 +826,6 @@ PrefabInstance:
       addedObject: {fileID: 1155035781}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 155d04772166c4449ae0145309fe682c, type: 3}
---- !u!1 &194815708 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2294124164636622766, guid: 155d04772166c4449ae0145309fe682c, type: 3}
-  m_PrefabInstance: {fileID: 194815707}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &194815709 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 33382923309141503, guid: 155d04772166c4449ae0145309fe682c, type: 3}
