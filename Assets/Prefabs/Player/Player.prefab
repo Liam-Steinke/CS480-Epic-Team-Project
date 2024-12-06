@@ -6474,8 +6474,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
-  maxHealth: 100
-  health: 100
+  maxHealth: 20
+  health: 20
   sceneLoader: {fileID: 6817435487686086941}
   deathSFX: {fileID: 9160703773102458080}
   damageSFX: {fileID: 5456836763885626275}
