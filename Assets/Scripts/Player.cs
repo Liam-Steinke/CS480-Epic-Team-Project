@@ -83,6 +83,18 @@ public class Player : MonoBehaviour, Damageable
         }
     }
 
+    public void Heal(float amount)
+    {
+        if (health >= maxHealth) 
+        {
+            health = maxHealth;
+            // healFailedSFX.Play();
+            return;
+        }
+        health += amount;
+        healthBar.SetHealth(health);
+        // healSFX.Play();
+    }
     private void Die()
     {
         deathSFX.Play();
