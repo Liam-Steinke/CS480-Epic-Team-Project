@@ -164,9 +164,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7962423321564853356}
+  - component: {fileID: 3440669363378832484}
   - component: {fileID: 7782134099147244614}
   - component: {fileID: 6110123467453343708}
-  - component: {fileID: 3440669363378832484}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -195,6 +195,27 @@ Transform:
   - {fileID: 3005371857523380789}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3440669363378832484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5895958484121045022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d116dc30dd408104b81823dd9af9b7d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPoint: {fileID: 8031233171509647927}
+  projectile: {fileID: 1209441644125003762, guid: 5bd986f0c0cc15b46ab50392fddc57fe, type: 3}
+  shootSound: {fileID: 6691120242278286604}
+  muzzleFlash: {fileID: 7605646942326967887}
+  tracer: {fileID: 9014969426337130066, guid: bb6211d402b7ea0499dd58154c8ec95f, type: 3}
+  damage: 1
+  ammo: 16
+  range: 100
+  inaccuracy: 0
 --- !u!54 &7782134099147244614
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -388,27 +409,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &3440669363378832484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5895958484121045022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d116dc30dd408104b81823dd9af9b7d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootPoint: {fileID: 8031233171509647927}
-  projectile: {fileID: 1209441644125003762, guid: 5bd986f0c0cc15b46ab50392fddc57fe, type: 3}
-  shootSound: {fileID: 6691120242278286604}
-  muzzleFlash: {fileID: 7605646942326967887}
-  tracer: {fileID: 9014969426337130066, guid: bb6211d402b7ea0499dd58154c8ec95f, type: 3}
-  damage: 1
-  ammo: 1200
-  range: 100
-  inaccuracy: 0
 --- !u!1 &6691120242278286604
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class Pistol : MonoBehaviour
 
     public float damage = 1f;
 
-    public int ammo = 1200;
+    public int ammo = 16;
     public float range = 100f;
     public float inaccuracy = 0f;
 
