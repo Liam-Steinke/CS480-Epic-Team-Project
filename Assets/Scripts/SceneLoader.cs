@@ -34,6 +34,11 @@ public class SceneLoader : MonoBehaviour
 
     }
 
+    public void goToMainMenu()
+    {
+        GoToSceneAsync(0);
+    }
+
     public Boolean mainMenu()
     {
         Scene scene = SceneManager.GetActiveScene();
@@ -45,27 +50,27 @@ public class SceneLoader : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         int n = scene.buildIndex;
         n++;
-        GoToScene(n);
+        GoToSceneAsync(n);
 
     }
 
-    public void GoToScene(int sceneIndex)
-    {
-        //wrapper method to make calling easier and start everything from this script
-        //print("starting scne e = " + sceneIndex);
-        StartCoroutine(GoToSceneRoutine(sceneIndex));
+    // public void GoToScene(int sceneIndex)
+    // {
+    //     //wrapper method to make calling easier and start everything from this script
+    //     //print("starting scne e = " + sceneIndex);
+    //     StartCoroutine(GoToSceneRoutine(sceneIndex));
 
-    }
+    // }
 
-    IEnumerator GoToSceneRoutine(int sceneIndex)
-    {
-        //fade out
-        fadeScreen.FadeOut();
-        yield return new WaitForSeconds(fadeScreen.fadeDuration);
+    // IEnumerator GoToSceneRoutine(int sceneIndex)
+    // {
+    //     //fade out
+    //     fadeScreen.FadeOut();
+    //     yield return new WaitForSeconds(fadeScreen.fadeDuration);
 
-        //Launch the new scene
-        SceneManager.LoadScene(sceneIndex);
-    }
+    //     //Launch the new scene
+    //     SceneManager.LoadScene(sceneIndex);
+    // }
 
     public void GoToSceneAsync(int sceneIndex)
     {
