@@ -103,7 +103,7 @@ public class Player : MonoBehaviour, Damageable
         deathSFX.Play();
         setState(States.DEAD);
         health = 0;
-        sceneLoader.GoToScene(0);
+        sceneLoader.goToMainMenu();
 
         // Reproduce death sound and implement a restart option
         // TODO: Implement restart functionality and sound reproduction
