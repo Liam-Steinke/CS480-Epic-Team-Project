@@ -25,8 +25,8 @@ public class Player : MonoBehaviour, Damageable
     {
         health = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        AudioManager.singleton.AddSound(deathSFX);
-        AudioManager.singleton.AddSound(damageSFX);
+        //AudioManager.singleton.AddSound(deathSFX);
+        //AudioManager.singleton.AddSound(damageSFX);
 
     }
 
