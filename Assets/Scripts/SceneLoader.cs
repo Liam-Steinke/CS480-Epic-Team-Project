@@ -40,6 +40,15 @@ public class SceneLoader : MonoBehaviour
         return scene.name.Equals("StartMenu");
     }
 
+    public void nextLevel()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        int n = scene.buildIndex;
+        n++;
+        GoToScene(n);
+
+    }
+
     public void GoToScene(int sceneIndex)
     {
         //wrapper method to make calling easier and start everything from this script
