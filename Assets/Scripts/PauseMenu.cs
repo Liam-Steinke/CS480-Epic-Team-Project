@@ -99,10 +99,12 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         options.SetActive(true);
+        AudioManager.singleton.UpdateBar();
     }
 
     public void Pause()
     {
+
         //print("Pausing");
         paused = true;
         FixPosition();
@@ -148,7 +150,6 @@ public class PauseMenu : MonoBehaviour
         float radian = Mathf.Deg2Rad * Rotation;
         pp.x += Mathf.Sin(radian) * scale;
         pp.z += Mathf.Cos(radian) * scale;
-        //print("pp = " + pp);
         menuRoot.transform.position = pp;
 
     }
@@ -172,8 +173,13 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (PauseAction.triggered)
         {
+            if (SceneLoader.singleton.mainMenu())
+            {
+                return;
+            }
             if (paused)
             {
                 UnPause();

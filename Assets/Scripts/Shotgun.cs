@@ -50,7 +50,8 @@ public class Shotgun : Pistol
             shootSound.GetComponent<AudioSource>().Play();
             muzzleFlash.Activate();
             createShot();
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 8; i++)
+            {
                 createShot(new Vector3(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy)));
             }
         }

@@ -55,6 +55,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
         {
             t.enemyParent = this;
         }
+        AudioManager.singleton.AddSound(shootSound);
 
 
         // Randomize initial patience and attack delay
@@ -91,7 +92,8 @@ public class BaseEnemy : MonoBehaviour, Damageable
                     agent.SetDestination(target.transform.position);
                     if (!agent.pathPending)
                     {
-                        if (seeTarget && !chasePlayer) {
+                        if (seeTarget && !chasePlayer)
+                        {
                             state = States.ENGAGE;
                             ChangeAnimation("Idle");
                             agent.SetDestination(transform.position);
@@ -112,37 +114,44 @@ public class BaseEnemy : MonoBehaviour, Damageable
                 attackTimer -= Time.deltaTime;
                 LookAtTarget();
 
-                if (patience <= 0) {
+                if (patience <= 0)
+                {
                     ChangeAnimation("Walk");
                     state = States.SEEK;
-                } else {
+                }
+                else
+                {
                     if (attackTimer <= 0)
                     {
-                    if (seeTarget) {
-                        state = States.ATTACK;
-                        ChangeAnimation("Idle");
-                        shoot();
-                        attackTimer = attackSpeed + Random.Range(0f, 1f);
-                        return;
-                    }
+                        if (seeTarget)
+                        {
+                            state = States.ATTACK;
+                            ChangeAnimation("Idle");
+                            shoot();
+                            attackTimer = attackSpeed + Random.Range(0f, 1f);
+                            return;
+                        }
                     }
                 }
-                
-                
 
-                
+
+
+
 
 
                 break;
             case States.ATTACK:
-                if (chasePlayer) {
+                if (chasePlayer)
+                {
                     ChangeAnimation("Walk");
                     state = States.SEEK;
-                } else {
+                }
+                else
+                {
                     state = States.ENGAGE;
                 }
-                
-                
+
+
                 break;
             case States.DIE:
                 break;
@@ -163,20 +172,23 @@ public class BaseEnemy : MonoBehaviour, Damageable
     // Create shot when shooting
     protected virtual void shoot()
     {
+
         shootSound.Play();
         muzzleFlash.Activate();
-        
-        for (int i = 0; i < bulletCount; i++) {
+
+        for (int i = 0; i < bulletCount; i++)
+        {
             Vector3 miss = new Vector3(Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy), Random.Range(-inaccuracy, inaccuracy));
             createShot(miss);
         }
-        
+
     }
 
-    protected void createShot(Vector3 offset) {
+    protected void createShot(Vector3 offset)
+    {
         RaycastHit hit;
         Tracer trace = Instantiate(tracer, new Vector3(0, 0, 0), Quaternion.identity);
-        
+
 
         Vector3 dir = (target.transform.position - shootPoint.transform.position + offset).normalized;
         if (Physics.Raycast(shootPoint.transform.position, dir, out hit, bulletRange))
@@ -189,7 +201,9 @@ public class BaseEnemy : MonoBehaviour, Damageable
             {
                 target.TakeDamage(damage);
             }
-        } else {
+        }
+        else
+        {
             trace.AimAt(shootPoint.transform.position, shootPoint.transform.position + (shootPoint.transform.forward * bulletRange));
         }
     }
@@ -201,12 +215,14 @@ public class BaseEnemy : MonoBehaviour, Damageable
         print("OUCH");
         if (health <= 0.0f)
         {
-            if (state != States.DIE) {
+            if (state != States.DIE)
+            {
                 foreach (ItemSpawner i in GetComponentsInChildren<ItemSpawner>())
                 {
                     i.spawnItem();
                 }
-                if (heldWeapon != null) {
+                if (heldWeapon != null)
+                {
                     heldWeapon.SetActive(false);
                 }
 
@@ -229,20 +245,25 @@ public class BaseEnemy : MonoBehaviour, Damageable
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2);
-            
+
             // Check if player can be seen. Causes chase behavior if patience runs out.
             RaycastHit hit;
             Vector3 dir = (target.transform.position - (transform.position + new Vector3(0, 1.8f, 0))).normalized;
-            if (Physics.Raycast(shootPoint.transform.position, dir, out hit, bulletRange)) {
+            if (Physics.Raycast(shootPoint.transform.position, dir, out hit, bulletRange))
+            {
                 // Debug.Log(hit.transform.gameObject.layer);
-                if (hit.transform.gameObject.layer == 8) {
-                    if (!seeTarget) {
+                if (hit.transform.gameObject.layer == 8)
+                {
+                    if (!seeTarget)
+                    {
                         patience = DEFAULT_PATIENCE + Random.Range(-1, 2);
                         seeTarget = true;
                         attackTimer = attackSpeed + Random.Range(0f, 1f);
                     }
-                    
-                } else {
+
+                }
+                else
+                {
                     patience -= Time.deltaTime;
                     seeTarget = false;
                 }

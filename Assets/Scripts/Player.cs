@@ -25,6 +25,9 @@ public class Player : MonoBehaviour, Damageable
     {
         health = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        AudioManager.singleton.AddSound(deathSFX);
+        AudioManager.singleton.AddSound(damageSFX);
+
     }
 
     // Update is called once per frame
@@ -85,7 +88,7 @@ public class Player : MonoBehaviour, Damageable
 
     public void Heal(float amount)
     {
-        if (health >= maxHealth) 
+        if (health >= maxHealth)
         {
             health = maxHealth;
             // healFailedSFX.Play();

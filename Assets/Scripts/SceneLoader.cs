@@ -34,6 +34,21 @@ public class SceneLoader : MonoBehaviour
 
     }
 
+    public Boolean mainMenu()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        return scene.name.Equals("StartMenu");
+    }
+
+    public void nextLevel()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        int n = scene.buildIndex;
+        n++;
+        GoToScene(n);
+
+    }
+
     public void GoToScene(int sceneIndex)
     {
         //wrapper method to make calling easier and start everything from this script
@@ -101,6 +116,27 @@ public class SceneLoader : MonoBehaviour
     public void GoToSceneAsync(String sceneName)
     {
         StartCoroutine(GoToSceneAsyncRoutine(sceneName));
+
+        // print("SceneManager.loadedSceneCount = " + SceneManager.loadedSceneCount);
+        // print("SceneManager.sceneCount = " + SceneManager.sceneCount);
+        // print("SceneManager.sceneCountInBuildSettings = " + SceneManager.sceneCountInBuildSettings);
+        // Scene scene = SceneManager.GetSceneByName(sceneName);
+        // if (!scene.IsValid())
+        // {
+        //     int i = 0;
+        //     while (i < SceneManager.sceneCountInBuildSettings)
+        //     {
+        //         scene = SceneManager.GetSceneAt(i);
+        //         print("scene name(" + i + ")" + " = " + scene.name);
+        //         if (scene.name.Equals(sceneName))
+        //         {
+        //             break;
+        //         }
+        //         i++;
+        //     }
+
+        // }
+        // StartCoroutine(GoToSceneAsyncRoutine(scene.buildIndex));
 
     }
 
