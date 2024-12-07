@@ -55,7 +55,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
         {
             t.enemyParent = this;
         }
-        AudioManager.singleton.AddSound(shootSound);
+        //AudioManager.singleton.AddSound(shootSound);
 
 
         // Randomize initial patience and attack delay
