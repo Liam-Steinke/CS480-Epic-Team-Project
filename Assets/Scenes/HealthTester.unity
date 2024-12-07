@@ -3814,7 +3814,7 @@ Transform:
   m_GameObject: {fileID: 1155035780}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 6.9}
+  m_LocalPosition: {x: -6.393, y: 0, z: 6.9}
   m_LocalScale: {x: 0.799984, y: 0.8001671, z: 0.79999006}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3977,7 +3977,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 61b435354e2a20847a719e0ea67c3eb8, type: 2}
+  - {fileID: 2100000, guid: 6641f618582eff146a80f83180c5d4f1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6960,6 +6960,14 @@ PrefabInstance:
     - target: {fileID: 1108807312201981322, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
+      propertyPath: onStartCombat.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
+      propertyPath: onStartCombat.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6629188066472283774, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: player
