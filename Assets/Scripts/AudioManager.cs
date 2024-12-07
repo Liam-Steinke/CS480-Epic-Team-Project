@@ -14,7 +14,9 @@ public class AudioManager : MonoBehaviour
     //AudioManager
 
     private List<AudioSource> sounds;
-    private float currentVolume = 1.0f;
+
+    private Dictionary<AudioSource, float> originalvolumes;
+    private float scalar = 1.0f;
 
     void Awake()
     {
@@ -24,6 +26,10 @@ public class AudioManager : MonoBehaviour
             if (sounds == null)
             {
                 sounds = new List<AudioSource>();
+            }
+            if (originalvolumes == null)
+            {
+                originalvolumes = new Dictionary<AudioSource, float>();
             }
         }
         else
@@ -37,7 +43,11 @@ public class AudioManager : MonoBehaviour
 
         foreach (AudioSource a in all)
         {
-            a.volume = currentVolume;
+            if (!originalvolumes.ContainsKey(a))
+            {
+                originalvolumes.Add(a, a.volume);
+            }
+            a.volume = a.volume * scalar;
             sounds.Add(a);
         }
     }
@@ -50,32 +60,45 @@ public class AudioManager : MonoBehaviour
             {
                 sounds = new List<AudioSource>();
             }
+            if (originalvolumes == null)
+            {
+                originalvolumes = new Dictionary<AudioSource, float>();
+            }
         }
 
         AudioSource[] all = Resources.FindObjectsOfTypeAll<AudioSource>();
 
         foreach (AudioSource a in all)
         {
-            a.volume = currentVolume;
+            if (!originalvolumes.ContainsKey(a))
+            {
+                originalvolumes.Add(a, a.volume);
+            }
+            a.volume = a.volume + a.volume * scalar;
             sounds.Add(a);
         }
     }
 
     public void UpdateBar()
     {
-        scrollbar.value = currentVolume;
+        scrollbar.value = scalar;
     }
 
     public void setVolume(float newVolume)
     {
-        currentVolume = newVolume;
+        scalar = newVolume;
         UpdateVolumes();
     }
 
 
     public void updateVolume()
     {
-        currentVolume = scrollbar.value;
+        scalar = scrollbar.value;
+        if (scalar < .1f)
+        {
+            scalar = .1f;
+        }
+        //print("scale = " + scalar);
         UpdateVolumes();
     }
 
@@ -85,13 +108,20 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
-        currentVolume = s.value;
+
+        scalar = s.value;
+        if (scalar < .1f)
+        {
+            scalar = .1f;
+        }
+        //print("scale = " + scalar);
+
         UpdateVolumes();
     }
 
     public float getVolume()
     {
-        return currentVolume;
+        return scalar;
     }
 
     public void AddSound(AudioSource a)
@@ -100,23 +130,28 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
-        a.volume = currentVolume;
+        if (!originalvolumes.ContainsKey(a))
+        {
+            originalvolumes.Add(a, a.volume);
+        }
+        a.volume = a.volume * scalar;
         if (!sounds.Contains(a))
         {
             sounds.Add(a);
         }
     }
-
-    // public void updateSound(AudioSource a)
-    // {
-    //     a.volume = currentVolume;
-    // }
-
     public void UpdateVolumes()
     {
         foreach (AudioSource a in sounds)
         {
-            a.volume = currentVolume;
+            try
+            {
+                a.volume = originalvolumes[a] * scalar;
+            }
+            catch (Exception)
+            {
+                continue;
+            }
         }
     }
 }
