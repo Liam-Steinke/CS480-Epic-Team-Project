@@ -39,8 +39,6 @@ public class AudioManager : MonoBehaviour
         {
             a.volume = currentVolume;
             sounds.Add(a);
-            print(a.name + "\n");
-
         }
     }
     void Start()
@@ -60,7 +58,6 @@ public class AudioManager : MonoBehaviour
         {
             a.volume = currentVolume;
             sounds.Add(a);
-            print(a.name + "\n");
         }
     }
 
@@ -78,10 +75,7 @@ public class AudioManager : MonoBehaviour
 
     public void updateVolume()
     {
-        print("old volume = " + currentVolume);
         currentVolume = scrollbar.value;
-        print("new volume = " + currentVolume);
-
         UpdateVolumes();
     }
 
@@ -91,10 +85,7 @@ public class AudioManager : MonoBehaviour
         {
             return;
         }
-        print("old volume = " + currentVolume);
         currentVolume = s.value;
-        print("new volume = " + currentVolume);
-
         UpdateVolumes();
     }
 
