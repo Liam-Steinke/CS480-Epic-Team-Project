@@ -212,6 +212,7 @@ MonoBehaviour:
   shootSound: {fileID: 6691120242278286604}
   muzzleFlash: {fileID: 7605646942326967887}
   tracer: {fileID: 9014969426337130066, guid: bb6211d402b7ea0499dd58154c8ec95f, type: 3}
+  bulletImpact: {fileID: 776287777429463099, guid: 76e6c3447f7eb7d4a8e30e8bcbebd29b, type: 3}
   damage: 1
   ammo: 16
   range: 100

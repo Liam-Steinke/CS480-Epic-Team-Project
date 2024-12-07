@@ -9,6 +9,7 @@ public class Pistol : MonoBehaviour
     public GameObject shootSound;
     public ParticleLight muzzleFlash;
     public Tracer tracer;
+    public GameObject bulletImpact;
 
     public float damage = 1f;
 
@@ -45,12 +46,15 @@ public class Pistol : MonoBehaviour
         if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.forward + offset, out hit, range)) {
             Debug.Log(hit.transform.name);
             trace.AimAt(shootPoint.transform.position, hit.point);
-            
 
             Target target = hit.transform.GetComponent<Target>();
             if (target != null) {
                 target.TakeDamage(damage);
             }
+        
+            GameObject impact = Instantiate(bulletImpact, hit.point, Quaternion.identity);
+            // Debug.Log(impact);
+
         } else {
             trace.AimAt(shootPoint.transform.position, shootPoint.transform.position + (shootPoint.transform.forward * range));
         }
