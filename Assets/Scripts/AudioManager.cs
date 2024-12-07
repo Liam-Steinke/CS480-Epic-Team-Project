@@ -1,76 +1,131 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
-
-//Credit to Brackeys youtube tutorial on Audio managers, as the majority of this code and learning how to use it was made by him.
-[System.Serializable]
-public class Sound
-{
-    public string name;
-    public AudioClip clip;
-    [Range(0,1)]
-    public float volume = 1;
-    [Range(-3,3)]
-    public float pitch = 1;
-    public bool loop = false;
-    public AudioSource source;
-
-    public Sound()
-    {
-        volume = 1;
-        pitch = 1;
-        loop = false;
-    }
-}
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
 
-    public static AudioManager instance;
+    public static AudioManager singleton;
+
+    public Scrollbar scrollbar;
+
     //AudioManager
+
+    private List<AudioSource> sounds;
+    private float currentVolume = 1.0f;
 
     void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (singleton == null)
+        {
+            singleton = this;
+            if (sounds == null)
+            {
+                sounds = new List<AudioSource>();
+            }
+        }
         else
         {
             Destroy(gameObject);
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
 
-        foreach (Sound s in sounds)
+        AudioSource[] all = Resources.FindObjectsOfTypeAll<AudioSource>();
+
+        foreach (AudioSource a in all)
         {
-            if(!s.source)
-                s.source = gameObject.AddComponent<AudioSource>();
+            a.volume = currentVolume;
+            sounds.Add(a);
+            print(a.name + "\n");
 
-            s.source.clip = s.clip;
+        }
+    }
+    void Start()
+    {
+        if (singleton == null)
+        {
+            singleton = this;
+            if (sounds == null)
+            {
+                sounds = new List<AudioSource>();
+            }
+        }
 
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+        AudioSource[] all = Resources.FindObjectsOfTypeAll<AudioSource>();
+
+        foreach (AudioSource a in all)
+        {
+            a.volume = currentVolume;
+            sounds.Add(a);
+            print(a.name + "\n");
         }
     }
 
-    public void Play(string name)
+    public void UpdateBar()
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        scrollbar.value = currentVolume;
+    }
+
+    public void setVolume(float newVolume)
+    {
+        currentVolume = newVolume;
+        UpdateVolumes();
+    }
+
+
+    public void updateVolume()
+    {
+        print("old volume = " + currentVolume);
+        currentVolume = scrollbar.value;
+        print("new volume = " + currentVolume);
+
+        UpdateVolumes();
+    }
+
+    public void updateVolume(Scrollbar s)
+    {
         if (s == null)
         {
-            Debug.LogWarning("Sound: " + name + " not found");
             return;
         }
+        print("old volume = " + currentVolume);
+        currentVolume = s.value;
+        print("new volume = " + currentVolume);
 
-        s.source.Play();
+        UpdateVolumes();
     }
 
-    public void Stop(string name)
+    public float getVolume()
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        return currentVolume;
+    }
 
-        s.source.Stop();
+    public void AddSound(AudioSource a)
+    {
+        if (a == null)
+        {
+            return;
+        }
+        a.volume = currentVolume;
+        if (!sounds.Contains(a))
+        {
+            sounds.Add(a);
+        }
+    }
+
+    // public void updateSound(AudioSource a)
+    // {
+    //     a.volume = currentVolume;
+    // }
+
+    public void UpdateVolumes()
+    {
+        foreach (AudioSource a in sounds)
+        {
+            a.volume = currentVolume;
+        }
     }
 }
