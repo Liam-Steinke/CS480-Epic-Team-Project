@@ -1011,7 +1011,7 @@ PrefabInstance:
     - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: onEndCombat.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 132235124}
+      objectReference: {fileID: 132235125}
     - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: onEndCombat.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
@@ -1074,7 +1074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: onEndCombat.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: openDoor
+      value: Stop
       objectReference: {fileID: 0}
     - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: onEndCombat.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
@@ -1122,7 +1122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: onEndCombat.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Door, Assembly-CSharp
+      value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: onEndCombat.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
@@ -1206,11 +1206,6 @@ PrefabInstance:
 --- !u!4 &132235123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1108807312201981322, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
-  m_PrefabInstance: {fileID: 132235122}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &132235124 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7004966815775433654, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
   m_PrefabInstance: {fileID: 132235122}
   m_PrefabAsset: {fileID: 0}
 --- !u!82 &132235125 stripped
@@ -10633,9 +10628,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5057168322116392635, guid: 4008516aa6249624b9ef6f5bd9a5ff14, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6219869292600948255, guid: 4008516aa6249624b9ef6f5bd9a5ff14, type: 3}
       propertyPath: m_Name
-      value: Cube
+      value: Door and Cube
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
