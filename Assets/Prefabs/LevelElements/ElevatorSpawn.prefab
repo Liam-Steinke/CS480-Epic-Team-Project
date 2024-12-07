@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElevatorSpawn
       objectReference: {fileID: 0}
+    - target: {fileID: 2456993333555972651, guid: 155d04772166c4449ae0145309fe682c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106547466305522609, guid: 155d04772166c4449ae0145309fe682c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4887789919691502624, guid: 155d04772166c4449ae0145309fe682c, type: 3}
       propertyPath: m_Activated.m_PersistentCalls.m_Calls.Array.size
       value: 1

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public float lifetime = 0.5f;
+    public float lifetime = 2.0f;
     void Start()
     {
         Destroy(gameObject, lifetime);

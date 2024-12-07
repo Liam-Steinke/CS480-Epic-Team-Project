@@ -47,6 +47,7 @@ public class BaseEnemy : MonoBehaviour, Damageable
 
 
     public Rigidbody[] RigidBodies;
+    public AudioSource deathSound;
 
     void Start()
     {
@@ -232,6 +233,10 @@ public class BaseEnemy : MonoBehaviour, Damageable
                 gameObject.SendMessageUpwards("OnEnemyKill");
                 state = States.DIE;
                 Destroy(gameObject, 5f);
+                int screamChance = Random.Range(0, 3);
+                if (screamChance == 0) {
+                    deathSound.Play();
+                }
             }
         }
     }
