@@ -18,6 +18,22 @@ public class AudioManager : MonoBehaviour
     private Dictionary<AudioSource, float> originalvolumes;
     private float scalar = 1.0f;
 
+
+    void OnDestroy()
+    {
+        foreach (AudioSource a in sounds)
+        {
+            try
+            {
+                a.volume = originalvolumes[a];
+            }
+            catch (Exception)
+            {
+                continue;
+            }
+        }
+    }
+
     void Awake()
     {
         if (singleton == null)
@@ -37,8 +53,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-
         AudioSource[] all = Resources.FindObjectsOfTypeAll<AudioSource>();
 
         foreach (AudioSource a in all)
@@ -64,6 +78,11 @@ public class AudioManager : MonoBehaviour
             {
                 originalvolumes = new Dictionary<AudioSource, float>();
             }
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
         }
 
         AudioSource[] all = Resources.FindObjectsOfTypeAll<AudioSource>();
