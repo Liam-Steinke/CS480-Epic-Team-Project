@@ -99,7 +99,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         options.SetActive(true);
-        AudioManager.singleton.UpdateBar();
+        //AudioManager.singleton.UpdateBar();
     }
 
     public void Pause()

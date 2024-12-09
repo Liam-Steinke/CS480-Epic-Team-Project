@@ -75,7 +75,7 @@ public class GameStartMenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         options.SetActive(true);
-        AudioManager.singleton.UpdateBar();
+        //AudioManager.singleton.UpdateBar();
         about.SetActive(false);
     }
     public void EnableAbout()

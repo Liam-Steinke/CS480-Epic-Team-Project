@@ -7,6 +7,12 @@ using UnityEngine.UI;
 public class AudioManager : MonoBehaviour
 {
 
+    public void SetVolume(float volume)
+    {
+
+    }
+
+    /*
     public static AudioManager singleton;
 
     public Scrollbar scrollbar;
@@ -173,4 +179,5 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+    */
 }
