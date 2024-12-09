@@ -7614,57 +7614,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 318461859}
   m_VersionIndex: 1281
   m_IsSelectable: 1
-  m_SelectedFaces: 0c0000000d0000000e0000000b0000000a00000009000000080000000f000000
-  m_SelectedEdges:
-  - a: 58
-    b: 57
-  - a: 57
-    b: 56
-  - a: 56
-    b: 58
-  - a: 64
-    b: 63
-  - a: 63
-    b: 62
-  - a: 62
-    b: 64
-  - a: 70
-    b: 69
-  - a: 69
-    b: 68
-  - a: 68
-    b: 70
-  - a: 52
-    b: 51
-  - a: 51
-    b: 50
-  - a: 50
-    b: 52
-  - a: 46
-    b: 45
-  - a: 45
-    b: 44
-  - a: 44
-    b: 46
-  - a: 40
-    b: 39
-  - a: 39
-    b: 38
-  - a: 38
-    b: 40
-  - a: 34
-    b: 33
-  - a: 33
-    b: 32
-  - a: 32
-    b: 34
-  - a: 76
-    b: 75
-  - a: 75
-    b: 74
-  - a: 74
-    b: 76
-  m_SelectedVertices: 3a0000003900000038000000400000003f0000003e0000004600000045000000440000003400000033000000320000002e0000002d0000002c0000002800000027000000260000002200000021000000200000004c0000004b0000004a000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!4 &171622632
 Transform:
   m_ObjectHideFlags: 0
@@ -8081,6 +8033,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3889945162158583464, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3748ffcad06444e45835d1dc84578cd1, type: 3}
     - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: onEndCombat.m_PersistentCalls.m_Calls.Array.size
       value: 4
@@ -69348,6 +69304,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3889945162158583464, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 38f188eeadedb74469b33c51da0dba47, type: 3}
     - target: {fileID: 5574155818710470544, guid: e08c4dd0fe9bc464886a151b8f2d7160, type: 3}
       propertyPath: onEndCombat.m_PersistentCalls.m_Calls.Array.size
       value: 4
