@@ -3,13 +3,58 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+//using System.Numerics;
 
 public class AudioManager : MonoBehaviour
 {
 
-    public void SetVolume(float volume)
-    {
 
+
+    public AudioMixer mixer;
+
+    public AudioMixerGroup group;
+
+    public Scrollbar bar, startBar;
+
+    private float min = -80.0f;
+    private float max = 0.0f;
+
+
+    public void Start()
+    {
+        AudioSource[] all = Resources.FindObjectsOfTypeAll<AudioSource>();
+
+        foreach (AudioSource a in all)
+        {
+            //print("audio source a = " + a.name);
+            //a.outputAudioMixerGroup = mixer.outputAudioMixerGroup;
+            a.outputAudioMixerGroup = group;
+        }
+        if (startBar != null)
+        {
+            updateBar(startBar);
+        }
+        else
+        {
+            updateBar(bar);
+        }
+    }
+
+    public void SetVolume(Scrollbar bar)
+    {
+        float volume = (100 * bar.value) - 100.0f;
+        //print("new volume = " + volume);
+        if (mixer == null) return;
+        mixer.SetFloat("masterVolume", volume);
+    }
+
+    public void updateBar(Scrollbar bar)
+    {
+        float current = 0.0f;
+        mixer.GetFloat("masterVolume", out current);
+        float newValue = Mathf.InverseLerp(min, max, current);
+        //print("bar value = " + newValue);
+        bar.value = newValue;
     }
 
     /*
