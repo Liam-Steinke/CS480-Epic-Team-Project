@@ -53,6 +53,7 @@
     },
     "dotnet.defaultSolution": "CS480-Epic-Team-Project.sln",
     "cSpell.words": [
+        "Lerp",
         "originalvolumes"
     ]
 }

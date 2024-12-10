@@ -18,6 +18,8 @@ public class Player : MonoBehaviour, Damageable
     public HealthBar healthBar;
     public DamageFlash damageFlash;
 
+    public GameObject loco;
+
 
 
     // Start is called before the first frame update
@@ -100,6 +102,7 @@ public class Player : MonoBehaviour, Damageable
     }
     private void Die()
     {
+        loco.SetActive(false);
         deathSFX.Play();
         setState(States.DEAD);
         health = 0;

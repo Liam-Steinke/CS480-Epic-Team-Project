@@ -53,9 +53,9 @@ public class GameStartMenu : MonoBehaviour
         HideAll();
         //print("starting game");
         //print("SC.sing = " + SceneLoader.singleton);
-        SceneLoader.singleton.GoToSceneAsync("Level1");
+        //SceneLoader.singleton.GoToSceneAsync("Level1");
         //print("gave to SC");
-        //SceneTransitionManager.singleton.GoToSceneAsync(1);
+        SceneLoader.singleton.GoToSceneAsync(1);
     }
 
     public void HideAll()
@@ -75,7 +75,7 @@ public class GameStartMenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         options.SetActive(true);
-        AudioManager.singleton.UpdateBar();
+        //AudioManager.singleton.UpdateBar();
         about.SetActive(false);
     }
     public void EnableAbout()

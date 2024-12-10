@@ -49,9 +49,8 @@ public class PauseMenu : MonoBehaviour
     {
         PauseAction = PauseActionRef.ToInputAction();
         paused = false;
+        LocomotionSystem.SetActive(true);
         verifyPlayer();
-
-
     }
 
     private void verifyPlayer()
@@ -73,13 +72,14 @@ public class PauseMenu : MonoBehaviour
         paused = false;
         menuRoot.SetActive(false);
         verifyPlayer();
+        LocomotionSystem.SetActive(true);
+
     }
 
     void mainMenu()
     {
-        UnPause();
+        HideAll();
         SceneLoader.singleton.GoToSceneAsync("StartMenu");
-
     }
 
     public void enablePauseMenu()
@@ -90,7 +90,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Reset()
     {
-        UnPause();
+        HideAll();
         SceneLoader.singleton.resetScene();
 
     }
@@ -99,7 +99,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         options.SetActive(true);
-        AudioManager.singleton.UpdateBar();
+        //AudioManager.singleton.UpdateBar();
     }
 
     public void Pause()
@@ -126,10 +126,10 @@ public class PauseMenu : MonoBehaviour
 
     public void FixPosition()
     {
-        float scale = 2.0f;
+        float scale = 3.0f;
         verifyPlayer();
         Vector3 pp = player.transform.position;
-        pp.y += 1.5f;
+        pp.y += 1.3f;
 
         Transform ct = Camera.transform;
         float Rotation;
@@ -158,6 +158,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         options.SetActive(false);
+        menuRoot.SetActive(false);
     }
 
     public void UnPause()
@@ -166,7 +167,7 @@ public class PauseMenu : MonoBehaviour
         paused = false;
         HideAll();
         LocomotionSystem.SetActive(true);
-        menuRoot.SetActive(false);
+        //menuRoot.SetActive(false);
 
     }
 
