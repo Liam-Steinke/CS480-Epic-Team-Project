@@ -90,13 +90,13 @@ public class Player : MonoBehaviour, Damageable
 
     public void Heal(float amount)
     {
+        health += amount;
+        Debug.Log("I AM THE PLAYER. I HEALED!!!");
         if (health >= maxHealth)
         {
             health = maxHealth;
             // healFailedSFX.Play();
-            return;
         }
-        health += amount;
         healthBar.SetHealth(health);
         // healSFX.Play();
     }
