@@ -19,7 +19,6 @@ public class PauseMenu : MonoBehaviour
 
 
     public static Boolean paused;
-
     public GameObject LocomotionSystem;
     public GameObject menuRoot;
     public GameObject player;
@@ -43,6 +42,8 @@ public class PauseMenu : MonoBehaviour
     public Button mainMenuButton;
 
     public List<Button> returnButtons;
+
+
 
 
     void Awake()
@@ -73,7 +74,6 @@ public class PauseMenu : MonoBehaviour
         menuRoot.SetActive(false);
         verifyPlayer();
         LocomotionSystem.SetActive(true);
-
     }
 
     void mainMenu()
