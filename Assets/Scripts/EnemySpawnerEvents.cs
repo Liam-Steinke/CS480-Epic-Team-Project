@@ -9,7 +9,7 @@ public class EnemySpawnerEvents : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        childCount = gameObject.transform.childCount;        
+        childCount = gameObject.transform.childCount - 2;        
     }
 
     public UnityEvent onStartCombat;
