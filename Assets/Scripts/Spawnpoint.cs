@@ -7,7 +7,9 @@ public class Spawnpoint : MonoBehaviour
 {
     public GameObject enemy;
     public GameObject player;
+    public GameObject spawnEffect;
     private GameObject enemyInstance;
+
     //public float timer = 10.0f;
     //private float originalTimer = 0f;
     private bool canSpawn = true;
@@ -45,6 +47,7 @@ public class Spawnpoint : MonoBehaviour
     public void SetSpawnActive(bool spawnState)
     {
         canSpawn = spawnState;
+
     }
 
     // If timer is less or equal to zero, it instantiates a new enemy
@@ -53,11 +56,12 @@ public class Spawnpoint : MonoBehaviour
         enemyInstance = Instantiate(enemy, gameObject.transform);
         enemyInstance.GetComponent<WeaponIK>().SetTarget(player.transform);
         enemyInstance.GetComponent<BaseEnemy>().SetTarget(player);
+        spawnEffect.SetActive(true);
         //ResetTimer();
         //if (timer <= 0)
         //{
         //    // Plans to implement a switch statement for different enemies
-            
+
         //}
     }
 }

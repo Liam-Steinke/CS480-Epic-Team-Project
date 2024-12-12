@@ -549,7 +549,7 @@ PrefabInstance:
     - target: {fileID: 5822821947120931875, guid: 9f6bdc493e299264e84a758eba5d2bef, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0a381799df1bba8459b3eb10de7ecc0c, type: 2}
+      objectReference: {fileID: 2100000, guid: 61a6928778dc40447a8dac042bc619d8, type: 2}
     - target: {fileID: 6386480451222621022, guid: 9f6bdc493e299264e84a758eba5d2bef, type: 3}
       propertyPath: m_Layer
       value: 7
