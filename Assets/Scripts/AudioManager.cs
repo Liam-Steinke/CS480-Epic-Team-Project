@@ -16,6 +16,13 @@ public class AudioManager : MonoBehaviour
 
     public Scrollbar bar, startBar;
 
+    public static Boolean vignetteEnabled = true;
+
+    public GameObject vignette;
+
+    public UnityEngine.UI.Toggle main, pause;
+
+
     private float min = -80.0f;
     private float max = 0.0f;
 
@@ -33,10 +40,13 @@ public class AudioManager : MonoBehaviour
         if (startBar != null)
         {
             updateBar(startBar);
+            UpdateToggle(main);
+
         }
         else
         {
             updateBar(bar);
+            UpdateToggle(pause);
         }
     }
 
@@ -55,6 +65,19 @@ public class AudioManager : MonoBehaviour
         float newValue = Mathf.InverseLerp(min, max, current);
         //print("bar value = " + newValue);
         bar.value = newValue;
+    }
+
+    public void SetVignette(UnityEngine.UI.Toggle T)
+    {
+        vignetteEnabled = T.isOn;
+        vignette.SetActive(vignetteEnabled);
+
+    }
+
+    public void UpdateToggle(UnityEngine.UI.Toggle T)
+    {
+        T.isOn = vignetteEnabled;
+        vignette.SetActive(vignetteEnabled);
     }
 
     /*
