@@ -437,7 +437,7 @@ PrefabInstance:
       objectReference: {fileID: 5080252664551429196}
     - target: {fileID: 8352944625358063417, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: attackSpeed
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8352944625358063417, guid: eb73a690dc1eab840858d898030d6d76, type: 3}
       propertyPath: bulletCount
