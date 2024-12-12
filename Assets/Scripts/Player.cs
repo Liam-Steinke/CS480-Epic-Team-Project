@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, Damageable
     public SceneLoader sceneLoader;
 
     private bool canTakeDamage = false;
-    public AudioSource deathSFX, damageSFX;
+    public AudioSource deathSFX, damageSFX, healSFX;
     public HealthBar healthBar;
     public DamageFlash damageFlash;
 
@@ -92,6 +92,7 @@ public class Player : MonoBehaviour, Damageable
     {
         health += amount;
         Debug.Log("I AM THE PLAYER. I HEALED!!!");
+        healSFX.Play();
         if (health >= maxHealth)
         {
             health = maxHealth;
